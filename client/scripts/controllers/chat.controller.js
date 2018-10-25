@@ -29,7 +29,9 @@ export default class ChatCtrl extends Controller {
           this.callMethod('newMessage', {
             picture: data,
             type: 'picture',
-            chatId: this.chatId
+            chatId: this.chatId,
+            userId:localStorage.getItem('Meteor.userId')
+
           });
         });
       }

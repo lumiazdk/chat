@@ -14,11 +14,15 @@ import { Meteor } from 'meteor/meteor';
 import ChatsCtrl from '../controllers/chats.controller';
 import ChatCtrl from '../controllers/chat.controller';
 import CalendarFilter from '../filters/calendar.filter';
+import ChatNameFilter from '../filters/chat-name.filter';
+import ChatPictureFilter from '../filters/chat-picture.filter';
 import LoginCtrl from '../controllers/login.controller';
 import ConfirmationCtrl from '../controllers/confirmation.controller';
 import ProfileCtrl from '../controllers/profile.controller';
 import SettingsCtrl from '../controllers/settings.controller';
+import NewChatCtrl from '../controllers/new-chat.controller';
 // import RoutesConfig from '../routes';
+import NewChatService from '../services/new-chat.service';
 import Routes from '../routes';
 import 'angular-meteor-auth';
 const App = 'Whatsapp';
@@ -34,12 +38,16 @@ new Loader(App)
     .load(ChatsCtrl)
     .load(ChatCtrl)
     .load(LoginCtrl)
+    .load(NewChatCtrl)
     .load(CalendarFilter)
+    .load(ChatNameFilter)
+    .load(ChatPictureFilter)
     .load(ConfirmationCtrl)
     .load(ProfileCtrl)
     .load(SettingsCtrl)
     .load(InputDirective)
     // .load(RoutesConfig)
+    .load(NewChatService)
     .load(Routes)
     
 // Startup

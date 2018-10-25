@@ -1,5 +1,6 @@
 import { Controller } from 'angular-ecmascript/module-helpers';
 import { Chats, Messages } from '../../../lib/collections';
+import { MeteorCameraUI } from 'meteor/okland:camera-ui';
 import Ionic from 'ionic-scripts';
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
@@ -15,18 +16,32 @@ export default class ChatCtrl extends Controller {
                 return Messages.find({ chatId: this.chatId });
             },
             data() {
+                
                 return Chats.findOne(this.chatId);
             }
         });
         this.autoScroll();
     }
+    sendPicture() {
+        MeteorCameraUI.getPicture({}, (err, data) => {
+          if (err) return this.handleError(err);
+     
+          this.callMethod('newMessage', {
+            picture: data,
+            type: 'picture',
+            chatId: this.chatId
+          });
+        });
+      }
+     
     sendMessage() {
         if (_.isEmpty(this.message)) return;
-
+        console.log(localStorage.getItem('Meteor.userId'))
         this.callMethod('newMessage', {
             text: this.message,
             type: 'text',
-            chatId: this.chatId
+            chatId: this.chatId,
+            userId:localStorage.getItem('Meteor.userId')
         });
 
         delete this.message;
@@ -68,7 +83,17 @@ export default class ChatCtrl extends Controller {
             this.$ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(animate);
         }, 300);
     }
+    handleError(err) {
+        if (err.error == 'cancel') return;
+        this.$log.error('Profile save error ', err);
+     
+        this.$ionicPopup.alert({
+          title: err.reason || 'Save failed',
+          template: 'Please try again',
+          okType: 'button-positive button-clear'
+        });
+      }
 }
 
 ChatCtrl.$name = 'ChatCtrl';
-ChatCtrl.$inject = ['$stateParams', '$timeout', '$ionicScrollDelegate'];
+ChatCtrl.$inject = ['$stateParams', '$timeout', '$ionicScrollDelegate', '$ionicPopup', '$log'];

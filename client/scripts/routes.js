@@ -6,6 +6,7 @@ import chatTemplateUrl from '../templates/chat.html'
 import tabsTemplateUrl from '../templates/tabs.html';
 import confirmationTemplateUrl from '../templates/confirmation.html';
 import loginTemplateUrl from '../templates/login.html';
+import registerTemplateUrl from '../templates/register.html';
 import profileTemplateUrl from '../templates/profile.html';
 import settingsTemplateUrl from '../templates/settings.html';
 
@@ -24,7 +25,7 @@ class RoutesConfig extends Config {
                 resolve: {
                     user: this.isAuthorized,
                     chats() {
-                      return Meteor.subscribe('chats');
+                        return Meteor.subscribe('chats');
                     }
                 }
             })
@@ -49,6 +50,11 @@ class RoutesConfig extends Config {
                 url: '/login',
                 templateUrl: loginTemplateUrl,
                 controller: 'LoginCtrl as logger'
+            })
+            .state('register', {
+                url: '/register',
+                templateUrl: registerTemplateUrl,
+                controller: 'RegisterCtrl as register'
             })
             .state('confirmation', {
                 url: '/confirmation/:phone',

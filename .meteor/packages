@@ -27,3 +27,4 @@ npm-bcrypt@0.8.7
 mys:accounts-phone
 okland:camera-ui
 reywood:publish-composite
+accounts-password

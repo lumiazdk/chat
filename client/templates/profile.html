@@ -1,27 +1,29 @@
-<ion-view title="Profile">
-    <ion-nav-buttons side="right">
-      <button ng-click="profile.updateName()" ng-disabled="!profile.name || profile.name.length === 0" class="button button-clear button-positive">Done</button>
-    </ion-nav-buttons>
-   
-    <ion-content class="profile">
-        <a class="profile-picture positive" ng-click="profile.updatePicture()">
-            <div ng-if="profile.currentUser.profile.picture">
-              <img ng-src="{{ profile.currentUser.profile.picture }}" alt="profile picture">
-              edit
-            </div>
-            <div ng-if="!profile.currentUser.profile.picture" class="upload-placehoder">
-          Add photo
-        </div>
-      </a>
-   
-      <div class="instructions">
-        输入你的名字和选择你的头像
+<ion-view title="简介">
+  
+  <ion-nav-buttons side="right">
+    <button ng-click="profile.updateName()" ng-disabled="!profile.name || profile.name.length === 0" class="button button-clear button-positive">确定</button>
+  </ion-nav-buttons>
+
+  <ion-content class="profile">
+    <a class="profile-picture positive" ng-click="profile.updatePicture()">
+      <div ng-if="profile.currentUser.profile.picture">
+        <img ng-src="{{ profile.currentUser.profile.picture }}" alt="profile picture">
+        编辑
       </div>
-   
-      <div class="list profile-name">
-        <label class="item item-input">
-          <input ng-model="profile.name" on-return="profile.updateName()" type="text" placeholder="Your name">
-        </label>
+      <div ng-if="!profile.currentUser.profile.picture" class="upload-placehoder">
+        添加
+        头像
       </div>
-    </ion-content>
-  </ion-view>
+    </a>
+
+    <div class="instructions">
+      输入你的名字和选择你的头像
+    </div>
+
+    <div class="list profile-name">
+      <label class="item item-input">
+        <input ng-model="profile.name" on-return="profile.updateName()" type="text" placeholder="Your name">
+      </label>
+    </div>
+  </ion-content>
+</ion-view>

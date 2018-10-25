@@ -7,12 +7,12 @@ export default class LoginCtrl extends Controller {
     if (_.isEmpty(this.phone)) return;
  
     const confirmPopup = this.$ionicPopup.confirm({
-      title: 'Number confirmation',
-      template: '<div>' + this.phone + '</div><div>Is your phone number above correct?</div>',
+      title: '确认手机号',
+      template: '<div>' + this.phone + '</div><div>确定使用这个手机号登录吗?</div>',
       cssClass: 'text-center',
-      okText: 'Yes',
+      okText: '是',
       okType: 'button-positive button-clear',
-      cancelText: 'edit',
+      cancelText: '编辑',
       cancelType: 'button-dark button-clear'
     });
  

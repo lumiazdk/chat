@@ -9,6 +9,7 @@
             <div ng-repeat="message in chat.messages" class="message-wrapper">
                 <!-- {{message}}
                 {{$root.currentUser._id}} -->
+                
                 <div class="message" ng-class="message.userId === $root.currentUser._id ? 'message-mine' : 'message-other'">
                     <ng-switch on="message.type">
                         <div ng-switch-when="text" class="text">{{ message.text }}</div>

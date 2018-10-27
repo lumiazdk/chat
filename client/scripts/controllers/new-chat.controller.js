@@ -30,6 +30,8 @@ export default class NewChatCtrl extends Controller {
  
   hideNewChatModal() {
     this.NewChat.hideModal();
+
+    console.log(this.users)
   }
  
   goToChat(chatId) {

@@ -1,7 +1,7 @@
 import { Meteor } from "meteor/meteor";
 import { Chats, Messages } from "../lib/collections";
 Meteor.publish("users", function() {
-    return Meteor.users.find({}, { fields: { profile: 1 } });
+    return Meteor.users.find({}, { fields: { profile: 1 ,emails:1,username:1} });
 });
 
 Meteor.publishComposite("chats", function() {
@@ -20,7 +20,7 @@ Meteor.publishComposite("chats", function() {
             {
                 find(chat) {
                     const query = { _id: { $in: chat.userIds } };
-                    const options = { fields: { profile: 1 } };
+                    const options = { fields: { username: 1 } };
 
                     return Meteor.users.find(query, options);
                 }

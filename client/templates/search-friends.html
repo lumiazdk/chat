@@ -4,8 +4,13 @@
             <div class="list list-inset">
               <label class="item item-input">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="text" placeholder="Search" ng-change="searchFriends.search()" ng-model="searchFriends.keyValue">
+                <input type="text" placeholder="搜索" ng-change="searchFriends.search()" ng-model="searchFriends.keyValue">
               </label>
             </div>
+            <a class="item item-avatar"  ng-repeat='item in searchFriends.userLists' (click)="searchFriends.sureAddFriend">
+              <img src="http://www.runoob.com/try/demo_source/venkman.jpg">
+              <h2>{{item.username}}</h2>
+              <p>{{item.emails[0].address}}</p>
+            </a>
     </ion-content>
 </ion-view>

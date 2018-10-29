@@ -22,6 +22,10 @@ import ProfileCtrl from '../controllers/profile.controller';
 import SettingsCtrl from '../controllers/settings.controller';
 import NewChatCtrl from '../controllers/new-chat.controller';
 import RegisterCtrl from '../controllers/register.controller';
+import FriendsCtrl from '../controllers/friends.controller';
+import searchFriendsCtrl from '../controllers/search-friends.controller';
+
+
 
 // import RoutesConfig from '../routes';
 import NewChatService from '../services/new-chat.service';
@@ -42,13 +46,15 @@ new Loader(App)
     .load(LoginCtrl)
     .load(NewChatCtrl)
     .load(RegisterCtrl)
-    
     .load(CalendarFilter)
     .load(ChatNameFilter)
     .load(ChatPictureFilter)
     .load(ConfirmationCtrl)
     .load(ProfileCtrl)
     .load(SettingsCtrl)
+    .load(FriendsCtrl)
+    .load(searchFriendsCtrl)
+    
     .load(InputDirective)
     // .load(RoutesConfig)
     .load(NewChatService)

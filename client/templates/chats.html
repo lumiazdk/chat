@@ -1,6 +1,6 @@
 <ion-view view-title="会话">
     <ion-nav-buttons side="right">
-        <button ng-click="chats.showNewChatModal()" class="button button-clear button-positive button-icon ion-ios-compose-outline"></button>
+        <button ng-click="chats.showNewChatModal()" class="button  button-positive button-icon ion-ios-compose-outline"></button>
     </ion-nav-buttons>
     <ion-content>
         <ion-list>
@@ -15,7 +15,9 @@
                 <span class="last-message-timestamp">{{ chat.lastMessage.timestamp | calendar }}</span>
                 <i class="icon ion-chevron-right icon-accessory"></i>
                 <i class="icon ion-chevron-right icon-accessory"></i>
-               
+                <ion-option-button class="button-assertive" ng-click="chats.remove(chat)">
+                    删除
+                </ion-option-button>
             </ion-item>
         </ion-list>
     </ion-content>

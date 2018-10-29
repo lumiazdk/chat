@@ -9,6 +9,10 @@ import loginTemplateUrl from '../templates/login.html';
 import registerTemplateUrl from '../templates/register.html';
 import profileTemplateUrl from '../templates/profile.html';
 import settingsTemplateUrl from '../templates/settings.html';
+import friendsTemplateUrl from '../templates/friends.html';
+import searchFriendsTemplateUrl from '../templates/search-friends.html';
+
+
 
 class RoutesConfig extends Config {
     constructor() {
@@ -35,6 +39,15 @@ class RoutesConfig extends Config {
                     'tab-chats': {
                         templateUrl: chatsTemplateUrl,
                         controller: 'ChatsCtrl as chats'
+                    }
+                }
+            })
+            .state('tab.friends', {
+                url: '/friends',
+                views: {
+                    'tab-friends': {
+                        templateUrl: friendsTemplateUrl,
+                        controller: 'friendsCtrl as friends'
                     }
                 }
             })
@@ -74,6 +87,15 @@ class RoutesConfig extends Config {
                     'tab-settings': {
                         templateUrl: settingsTemplateUrl,
                         controller: 'SettingsCtrl as settings',
+                    }
+                }
+            }).state('tab.searchFriends', {
+                url: '/friends/searchFriends',
+
+                views: {
+                    'tab-friends': {
+                        templateUrl: searchFriendsTemplateUrl,
+                        controller: 'searchFriendsCtrl as searchFriends',
                     }
                 }
             });

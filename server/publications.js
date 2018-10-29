@@ -1,10 +1,13 @@
 import { Meteor } from "meteor/meteor";
-import { Chats, Messages } from "../lib/collections";
-Meteor.publish("users", function() {
-    return Meteor.users.find({}, { fields: { profile: 1 ,emails:1,username:1} });
+import { Chats, Messages, Friends } from "../lib/collections";
+Meteor.publish("friends", function () {
+    return Friends.find({}, { });
+});
+Meteor.publish("users", function () {
+    return Meteor.users.find({}, { fields: { profile: 1, emails: 1, username: 1 } });
 });
 
-Meteor.publishComposite("chats", function() {
+Meteor.publishComposite("chats", function () {
     if (!this.userId) return;
 
     return {

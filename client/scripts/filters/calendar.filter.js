@@ -1,4 +1,5 @@
 import Moment from 'moment';
+import 'moment/locale/zh-cn'
 import { Filter } from 'angular-ecmascript/module-helpers';
  
 export default class CalendarFilter extends Filter {

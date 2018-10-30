@@ -1,7 +1,16 @@
 import { Meteor } from "meteor/meteor";
-import { Chats, Messages, Friends } from "../lib/collections";
+import { Chats, Messages, Friends ,AddMessage} from "../lib/collections";
 Meteor.publish("friends", function () {
     return Friends.find({}, { });
+});
+Meteor.publish("AddMessage", function () {
+    return AddMessage.find({}, { 
+        fields:{
+            userId:1,
+            friendId:1,
+            userData:1
+        }
+    });
 });
 Meteor.publish("users", function () {
     return Meteor.users.find({}, { fields: { profile: 1, emails: 1, username: 1 } });

@@ -1,0 +1,11 @@
+<ion-view title="最近">
+    <ion-content class="favorites" hide-nav-bar={{true}}>
+        <div class="list">
+            <a class="item item-avatar" ng-repeat="item in recents.data">
+                <img src="http://www.runoob.com/try/demo_source/venkman.jpg">
+                <h2>{{item.userData.username}}</h2>
+                <p>加个好友吧？</p>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

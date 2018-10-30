@@ -11,6 +11,10 @@ import profileTemplateUrl from '../templates/profile.html';
 import settingsTemplateUrl from '../templates/settings.html';
 import friendsTemplateUrl from '../templates/friends.html';
 import searchFriendsTemplateUrl from '../templates/search-friends.html';
+import favoritesTemplateUrl from '../templates/favorites.html';
+import recentsTemplateUrl from '../templates/recents.html';
+
+
 
 
 
@@ -39,6 +43,24 @@ class RoutesConfig extends Config {
                     'tab-chats': {
                         templateUrl: chatsTemplateUrl,
                         controller: 'ChatsCtrl as chats'
+                    }
+                }
+            })
+            .state('tab.favorites', {
+                url: '/favorites',
+                views: {
+                    'tab-favorites': {
+                        templateUrl: favoritesTemplateUrl,
+                        controller: 'favoritesCtrl as favorites'
+                    }
+                }
+            })
+            .state('tab.recents', {
+                url: '/recents',
+                views: {
+                    'tab-recents': {
+                        templateUrl: recentsTemplateUrl,
+                        controller: 'recentsCtrl as recents'
                     }
                 }
             })

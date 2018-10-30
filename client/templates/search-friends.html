@@ -1,16 +1,16 @@
 <ion-view title="搜索好友">
-   
-    <ion-content class="searchFriends" hide-nav-bar={{true}}>
-            <div class="list list-inset">
-              <label class="item item-input">
-                <i class="icon ion-search placeholder-icon"></i>
-                <input type="text" placeholder="搜索" ng-change="searchFriends.search()" ng-model="searchFriends.keyValue">
-              </label>
-            </div>
-            <a class="item item-avatar"  ng-repeat='item in searchFriends.userLists' (click)="searchFriends.sureAddFriend">
-              <img src="http://www.runoob.com/try/demo_source/venkman.jpg">
-              <h2>{{item.username}}</h2>
-              <p>{{item.emails[0].address}}</p>
-            </a>
-    </ion-content>
+
+  <ion-content class="searchFriends" hide-nav-bar={{true}}>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="搜索" ng-change="searchFriends.search()" ng-model="searchFriends.keyValue">
+      </label>
+    </div>
+    <span class="item item-avatar" ng-repeat='item in searchFriends.userLists' ng-click="searchFriends.sureAddFriend(item)">
+      <img src="http://www.runoob.com/try/demo_source/venkman.jpg">
+      <h2>{{item.username}}</h2>
+      <p>{{item.emails[0].address}}</p>
+    </span>
+  </ion-content>
 </ion-view>

@@ -24,6 +24,10 @@ import NewChatCtrl from '../controllers/new-chat.controller';
 import RegisterCtrl from '../controllers/register.controller';
 import FriendsCtrl from '../controllers/friends.controller';
 import searchFriendsCtrl from '../controllers/search-friends.controller';
+import favoritesCtrl from '../controllers/favorites.controller';
+import recentsCtrl from '../controllers/recents.controller';
+
+
 
 
 
@@ -54,12 +58,16 @@ new Loader(App)
     .load(SettingsCtrl)
     .load(FriendsCtrl)
     .load(searchFriendsCtrl)
-    
+    .load(favoritesCtrl)
+    .load(recentsCtrl)
+
+
+
     .load(InputDirective)
     // .load(RoutesConfig)
     .load(NewChatService)
     .load(Routes)
-    
+
 // Startup
 if (Meteor.isCordova) {
     Angular.element(document).on('deviceready', onReady);

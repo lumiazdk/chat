@@ -3,12 +3,13 @@ import { Accounts } from "meteor/accounts-base";
 import { Controller } from "angular-ecmascript/module-helpers";
 import { AddMessage } from "../../../lib/collections";
 
-export default class searchFriendsCtrl extends Controller {
+export default class recentsCtrl extends Controller {
     constructor() {
         super(...arguments);
-        this.subscribe("users");
+        this.subscribe("AddMessage");
         this.helpers({
             data() {
+                return AddMessage.find()
             },
             users() {
                 return Meteor.users.find();
@@ -44,27 +45,12 @@ export default class searchFriendsCtrl extends Controller {
                         var message = {
                             userId: Meteor.userId(),
                             friendId: item._id,
-                            userData: Meteor.user(),
-                            isSure: false
+                            userdata:Meteor.user(),
+                            isSure:false
                         }
                         console.log(message)
-                        AddMessage.insert(message, function (err) {
+                        AddMessage.insert(message,function(err){
                             console.log(err)
-                            if (!err) {
-                                layer.open({
-                                    content: '发送成功'
-                                    , skin: 'msg'
-                                    , time: 2 //2秒后自动关闭
-                                });
-                                return
-                            } else {
-                                layer.open({
-                                    content: '发送失败'
-                                    , skin: 'msg'
-                                    , time: 2 //2秒后自动关闭
-                                });
-                                return
-                            }
                         });
                     }
                 },
@@ -83,5 +69,5 @@ export default class searchFriendsCtrl extends Controller {
     }
 }
 
-searchFriendsCtrl.$name = "searchFriendsCtrl";
-searchFriendsCtrl.$inject = ["$state", "$ionicLoading", "$ionicPopup", "$log"];
+recentsCtrl.$name = "recentsCtrl";
+recentsCtrl.$inject = ["$state", "$ionicLoading", "$ionicPopup", "$log"];

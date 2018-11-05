@@ -1,7 +1,7 @@
 <ion-view title="登陆">
     <ion-content class="login">
         <div class="list">
-                {{ currentUser }}
+            {{ currentUser }}
             <label class="item item-input">
                 <input type="text" placeholder="邮箱" ng-model="logger.email">
             </label>
@@ -13,14 +13,16 @@
                     <!-- <div class="col-demo" style="text-align: left"><button class="button button-clear button-dark" ng-click="logger.forgotpassword()">忘记密码？</button></div> -->
                 </div>
                 <div class="col col-33 col-offset-33">
-                    <div class="col-demo" style="text-align: right"><button class="button button-clear button-dark" ng-click="logger.toregister()">注册</button></div>
+                    <div class="col-demo" style="text-align: right"><button class="button button-clear button-dark"
+                            ng-click="logger.toregister()">注册</button></div>
                 </div>
             </div>
             <button class="button button-dark loginbtn" ng-click="logger.login()">
                 登陆
             </button>
-            <button class="button button-block button-positive" ng-click="logger.logout()">
-                退出登陆
+            <input type="file" file="logger.files">
+            <button class="button button-dark loginbtn" ng-click="logger.upload()">
+                上传
             </button>
         </div>
     </ion-content>

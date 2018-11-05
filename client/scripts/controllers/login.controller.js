@@ -2,6 +2,7 @@ import { _ } from 'meteor/underscore';
 import { Accounts } from 'meteor/accounts-base';
 import { Controller } from 'angular-ecmascript/module-helpers';
 import { Users } from '../../../lib/collections';
+import axios from 'axios'
 
 export default class LoginCtrl extends Controller {
   constructor() {
@@ -91,6 +92,20 @@ export default class LoginCtrl extends Controller {
     console.log(this.users)
 
     Accounts.sendResetPasswordEmail('111', ['1126572821@qq.com'], {})
+  }
+  upload() {
+    var that = this
+    var formData = new FormData();
+    formData.append("files", this.files[0]);
+    console.log(this.files)
+    axios({
+      method: 'post',
+      url: '/upload',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data: formData
+    });
   }
   handleError(err) {
     this.$log.error('Login error ', err);

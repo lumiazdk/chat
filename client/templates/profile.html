@@ -1,20 +1,20 @@
 <ion-view title="简介">
-  
+
   <ion-nav-buttons side="right" class="hide">
     <button ng-click="profile.updateName()" ng-disabled="!profile.name || profile.name.length === 0" class="button button-clear button-positive">确定</button>
   </ion-nav-buttons>
 
   <ion-content class="profile">
-    <a class="profile-picture positive" ng-click="profile.updatePicture()">
-      <div ng-if="profile.currentUser.profile.picture">
-        <img ng-src="{{ profile.currentUser.profile.picture }}" alt="profile picture">
-        编辑
+    <div class="profile-picture positive">
+      <div class="uploadwraper">
+        <img ng-src="{{ profile.currentUser.profile.photo }}" alt="profile picture">
+        <input type="file" file="profile.files" onchange="angular.element(this).scope().uploadImage(this.files)"
+          ng-model='profile.files' class="upload">
+        <ion-spinner icon="lines" class="spinner-calm loading" ng-if='profile.loading'></ion-spinner>
       </div>
-      <div ng-if="!profile.currentUser.profile.picture" class="upload-placehoder">
-        添加
-        头像
-      </div>
-    </a>
+
+
+    </div>
 
     <div class="instructions">
       输入你的名字和选择你的头像
@@ -22,7 +22,7 @@
 
     <div class="list profile-name">
       <label class="item item-input">
-        <input ng-model="profile.name" on-return="profile.updateName()" type="text" placeholder="Your name">
+        <input ng-model="profile.name" on-return="profile.updateName()" type="text" placeholder="你的姓名">
       </label>
     </div>
   </ion-content>

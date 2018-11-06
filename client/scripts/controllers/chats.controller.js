@@ -5,10 +5,9 @@ import { Chats } from "../../../lib/collections";
 export default class ChatsCtrl extends Controller {
     constructor() {
         super(...arguments);
-
+        this.subscribe("users");
         this.helpers({
             data() {
-                console.log(Chats.find())
                 return Chats.find();
             }
         });

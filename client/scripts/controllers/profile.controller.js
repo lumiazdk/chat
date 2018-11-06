@@ -1,25 +1,57 @@
 import { _ } from "meteor/underscore";
 import { Controller } from "angular-ecmascript/module-helpers";
-import { MeteorCameraUI } from "meteor/okland:camera-ui";
+import axios from "axios";
+
 export default class ProfileCtrl extends Controller {
-    constructor() {
+    constructor($scope) {
         super(...arguments);
 
         const profile = this.currentUser && this.currentUser.profile;
         this.name = profile ? profile.name : "";
+        var that = this;
+        this.$scope.uploadImage = function(files) {
+            // 上传代码
+            console.log(files);
+            that.upload(files);
+        };
+        this.loading = false;
     }
-    updatePicture() {
-        MeteorCameraUI.getPicture({ width: 60, height: 60 }, (err, data) => {
-            if (err) return this.handleError(err);
+    upload(files) {
+        var that = this;
+        var formData = new FormData();
+        formData.append("files", files[0]);
+        this.loading = true;
+        axios({
+            method: "post",
+            url: "/upload",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            data: formData
+        }).then(res => {
+            console.log(res);
+            if (res.data.code == 0) {
+                var data = res.data.data;
+                this.callMethod("updatePicture", data, err => {
+                    if (!err) {
+                        this.loading = false;
 
-            this.$ionicLoading.show({
-                template: "Updating picture..."
-            });
+                        layer.open({
+                            content: "修改成功",
+                            skin: "msg",
+                            time: 2 //2秒后自动关闭
+                        });
+                    }
+                });
+            } else {
+                this.loading = false;
 
-            this.callMethod("updatePicture", data, err => {
-                this.$ionicLoading.hide();
-                this.handleError(err);
-            });
+                layer.open({
+                    content: "修改失败",
+                    skin: "msg",
+                    time: 2 //2秒后自动关闭
+                });
+            }
         });
     }
     updateName() {
@@ -28,11 +60,13 @@ export default class ProfileCtrl extends Controller {
         this.callMethod("updateName", this.name, err => {
             if (err) return this.handleError(err);
             this.$state.go("tab.chats");
+        }).then(res => {
+            console.log(res);
         });
     }
 
     handleError(err) {
-      if (err.error == 'cancel') return;
+        if (err.error == "cancel") return;
         this.$log.error("Profile save error ", err);
 
         this.$ionicPopup.alert({
@@ -44,4 +78,4 @@ export default class ProfileCtrl extends Controller {
 }
 
 ProfileCtrl.$name = "ProfileCtrl";
-ProfileCtrl.$inject = ['$state', '$ionicLoading', '$ionicPopup', '$log'];
+ProfileCtrl.$inject = ["$state", "$ionicLoading", "$ionicPopup", "$log"];

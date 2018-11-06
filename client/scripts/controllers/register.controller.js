@@ -50,7 +50,8 @@ export default class RegisterCtrl extends Controller {
             email: this.email,
             password: this.password,
             profile: {
-                autograph: this.autograph
+                autograph: this.autograph,
+                photo: "http://phnlqajge.bkt.clouddn.com/timg.jpg"
             }
         };
 

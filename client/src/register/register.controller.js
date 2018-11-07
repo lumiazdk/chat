@@ -45,7 +45,7 @@ export default class RegisterCtrl extends Controller {
             });
             return;
         }
-        var registerData = {
+        let registerData = {
             username: this.username,
             email: this.email,
             password: this.password,

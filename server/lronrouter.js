@@ -1,30 +1,30 @@
 import { Meteor } from "meteor/meteor";
 
 Router.route("/upload", { where: "server" }).post(function() {
-    var req = this.request;
-    var res = this.response;
+    let req = this.request;
+    let res = this.response;
     res.writeHead(200, { "Content-Type": "text/html;  charset=utf-8" });
-    var formidable = Meteor.npmRequire("formidable");
-    var path = Meteor.npmRequire("path");
+    let formidable = Meteor.npmRequire("formidable");
+    let path = Meteor.npmRequire("path");
 
-    var qiniu = Meteor.npmRequire("qiniu");
-    var accessKey = "O-rXACtEjSudhKbP4H-aJaEH6-Wat4bnAHmnZ5df";
-    var secretKey = "1ezSH3zqjlIJpt0zsMCyWveZN0YAA07aimyXpyIL";
-    var bucket = "chat";
-    var mac = new qiniu.auth.digest.Mac(accessKey, secretKey);
-    var options = {
+    let qiniu = Meteor.npmRequire("qiniu");
+    let accessKey = "O-rXACtEjSudhKbP4H-aJaEH6-Wat4bnAHmnZ5df";
+    let secretKey = "1ezSH3zqjlIJpt0zsMCyWveZN0YAA07aimyXpyIL";
+    let bucket = "chat";
+    let mac = new qiniu.auth.digest.Mac(accessKey, secretKey);
+    let options = {
         scope: bucket
     };
-    var putPolicy = new qiniu.rs.PutPolicy(options);
-    var uploadToken = putPolicy.uploadToken(mac);
-    var config = new qiniu.conf.Config();
+    let putPolicy = new qiniu.rs.PutPolicy(options);
+    let uploadToken = putPolicy.uploadToken(mac);
+    let config = new qiniu.conf.Config();
     // 空间对应的机房
     config.zone = qiniu.zone.Zone_z2;
-    var localFile = "/Users/11265/aa.jpg";
-    var formUploader = new qiniu.form_up.FormUploader(config);
-    var putExtra = new qiniu.form_up.PutExtra();
-    var key = "";
-    var form = formidable.IncomingForm();
+    let localFile = "/Users/11265/aa.jpg";
+    let formUploader = new qiniu.form_up.FormUploader(config);
+    let putExtra = new qiniu.form_up.PutExtra();
+    let key = "";
+    let form = formidable.IncomingForm();
     // 文件上传
     form.parse(req, function(err, fields, files) {
         if (err) {
@@ -41,7 +41,7 @@ Router.route("/upload", { where: "server" }).post(function() {
                     throw respErr;
                 }
                 if (respInfo.statusCode == 200) {
-                    var data = {
+                    let data = {
                         code: 0,
                         data: respBody,
                         message: "上传成功"

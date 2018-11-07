@@ -5,7 +5,7 @@ import axios from "axios";
 export default class ProfileCtrl extends Controller {
     constructor($scope) {
         super(...arguments);
-        var that = this;
+        let that = this;
         this.helpers({
             profile() {
                 return that.currentUser;
@@ -19,8 +19,8 @@ export default class ProfileCtrl extends Controller {
         this.loading = false;
     }
     upload(files) {
-        var that = this;
-        var formData = new FormData();
+        let that = this;
+        let formData = new FormData();
         formData.append("files", files[0]);
         this.loading = true;
         axios({
@@ -33,7 +33,7 @@ export default class ProfileCtrl extends Controller {
         }).then(res => {
             console.log(res);
             if (res.data.code == 0) {
-                var data = res.data.data;
+                let data = res.data.data;
                 this.callMethod("updatePicture", data, err => {
                     if (!err) {
                         this.loading = false;

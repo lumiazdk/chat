@@ -14,7 +14,7 @@ export default class LoginCtrl extends Controller {
     });
   }
   login() {
-    var that = this
+    let that = this
     if (_.isEmpty(this.email)) {
       layer.open({
         content: '请输入电子邮件'
@@ -33,7 +33,7 @@ export default class LoginCtrl extends Controller {
     }
 
 
-    var user = {
+    let user = {
       email: this.email
     }
     check(user, Match.OneOf(
@@ -41,7 +41,7 @@ export default class LoginCtrl extends Controller {
         email: String,
       },
     ));
-    var password = this.password
+    let password = this.password
     Meteor.loginWithPassword(user, password, function (error) {
 
       if (error) {

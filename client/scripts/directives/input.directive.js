@@ -46,7 +46,7 @@ export default class InputDirective extends Directive {
       }
     });
     element.bind('change', function (event) {
-      var file = event.target.files;
+      let file = event.target.files;
       scope.file = file ? file : undefined;
       scope.$apply();
     });

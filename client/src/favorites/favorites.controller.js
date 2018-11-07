@@ -32,7 +32,7 @@ export default class favoritesCtrl extends Controller {
         console.log(this.userLists);
     }
     sureAddFriend(item) {
-        var confirmPopup = this.$ionicPopup.confirm({
+        let confirmPopup = this.$ionicPopup.confirm({
             title: "好友",
             template: "你确定发送添加好友请求吗？",
             buttons: [
@@ -41,7 +41,7 @@ export default class favoritesCtrl extends Controller {
                     text: '<b>确定</b>',
                     type: 'button-positive',
                     onTap: function (e) {
-                        var message = {
+                        let message = {
                             userId: Meteor.userId(),
                             friendId: item._id,
                             userdata:Meteor.user(),

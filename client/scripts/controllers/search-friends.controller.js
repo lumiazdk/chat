@@ -8,8 +8,7 @@ export default class searchFriendsCtrl extends Controller {
         super(...arguments);
         this.subscribe("users");
         this.helpers({
-            data() {
-            },
+            data() {},
             users() {
                 return Meteor.users.find();
             }
@@ -36,41 +35,42 @@ export default class searchFriendsCtrl extends Controller {
             title: "好友",
             template: "你确定发送添加好友请求吗？",
             buttons: [
-                { text: '取消' },
+                { text: "取消" },
                 {
-                    text: '<b>确定</b>',
-                    type: 'button-positive',
-                    onTap: function (e) {
+                    text: "<b>确定</b>",
+                    type: "button-positive",
+                    onTap: function(e) {
                         var message = {
                             userId: Meteor.userId(),
                             friendId: item._id,
                             userData: Meteor.user(),
+                            friendData: Meteor.users
+                                .findOne({ _id: item._id }),
                             isSure: false
-                        }
-                        console.log(message)
-                        AddMessage.insert(message, function (err) {
-                            console.log(err)
+                        };
+                        console.log(message);
+                        AddMessage.insert(message, function(err) {
+                            console.log(err);
                             if (!err) {
                                 layer.open({
-                                    content: '发送成功'
-                                    , skin: 'msg'
-                                    , time: 2 //2秒后自动关闭
+                                    content: "发送成功",
+                                    skin: "msg",
+                                    time: 2 //2秒后自动关闭
                                 });
-                                return
+                                return;
                             } else {
                                 layer.open({
-                                    content: '发送失败'
-                                    , skin: 'msg'
-                                    , time: 2 //2秒后自动关闭
+                                    content: "发送失败",
+                                    skin: "msg",
+                                    time: 2 //2秒后自动关闭
                                 });
-                                return
+                                return;
                             }
                         });
                     }
-                },
+                }
             ]
         });
-
     }
     handleError(err) {
         this.$log.error("Login error ", err);

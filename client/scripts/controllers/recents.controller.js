@@ -8,14 +8,23 @@ export default class recentsCtrl extends Controller {
         super(...arguments);
         this.subscribe("AddMessage");
         this.helpers({
-            data() {
-                return AddMessage.find()
+            
+            sendMessageData(){
+                var data=AddMessage.find({userId:Meteor.userId()}).fetch()
+                console.log(data)
+                return data
             },
-            users() {
-                return Meteor.users.find();
+            getMessageData(){
+                var data=AddMessage.find({friendId:Meteor.userId()}).fetch()
+                console.log(data)
+                return data
             }
         });
     }
+    getAddMessage(){
+        var data=AddMessage.find({}).fetch()
+    }
+
     userLists = [];
     search() {
         if (_.isEmpty(this.keyValue)) {

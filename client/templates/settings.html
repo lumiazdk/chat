@@ -1,13 +1,14 @@
 <ion-view view-title="设置">
   <ion-content>
-    <div class="padding text-center" >
-      <button ng-click="settings.logout()" class="button button-clear button-assertive">退出登录</button>
-    </div>
+    
     <ion-list>
-      <ion-item href="/profile" class="item-icon-right">
-        简介
+      <ion-item class="item-icon-right" ng-click='settings.$state.go("profile")'>
+        个人资料
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>
+    <div class="padding text-center">
+        <button ng-click="settings.logout()" class="button button-clear button-assertive">退出登录</button>
+      </div>
   </ion-content>
 </ion-view>

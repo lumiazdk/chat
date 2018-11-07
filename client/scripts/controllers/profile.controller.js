@@ -5,10 +5,12 @@ import axios from "axios";
 export default class ProfileCtrl extends Controller {
     constructor($scope) {
         super(...arguments);
-
-        const profile = this.currentUser && this.currentUser.profile;
-        this.name = profile ? profile.name : "";
         var that = this;
+        this.helpers({
+            profile() {
+                return that.currentUser;
+            }
+        });
         this.$scope.uploadImage = function(files) {
             // 上传代码
             console.log(files);
@@ -55,14 +57,12 @@ export default class ProfileCtrl extends Controller {
         });
     }
     updateName() {
-        if (_.isEmpty(this.name)) return;
+        if (_.isEmpty(this.profile.username)) return;
 
-        this.callMethod("updateName", this.name, err => {
+        this.callMethod("updateName", this.profile.username, err => {
             if (err) return this.handleError(err);
             this.$state.go("tab.chats");
-        }).then(res => {
-            console.log(res);
-        });
+        })
     }
 
     handleError(err) {

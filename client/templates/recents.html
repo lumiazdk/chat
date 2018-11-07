@@ -1,11 +1,23 @@
 <ion-view title="最近">
-    <ion-content class="favorites" hide-nav-bar={{true}}>
+    <ion-content class="recents" hide-nav-bar={{true}}>
+        <p class="title">发出的请求</p>
         <div class="list">
-            <a class="item item-avatar" ng-repeat="item in recents.data">
-                <img src="http://www.runoob.com/try/demo_source/venkman.jpg">
+            <a class="item item-avatar" ng-repeat="item in recents.sendMessageData">
+                <img ng-src="{{item.friendData.profile.photo}}">
+                <h2>{{item.friendData.username}}</h2>
+                <p>加个好友吧？</p>
+            </a>
+            <div class="none" ng-if='recents.sendMessageData.length==0'>暂无请求</div>
+        </div>
+        <p class="title">收到的请求</p>
+        <div class="list">
+            <a class="item item-avatar" ng-repeat="item in recents.getMessageData">
+                <img ng-src="{{item.userData.profile.photo}}">
                 <h2>{{item.userData.username}}</h2>
                 <p>加个好友吧？</p>
             </a>
+            <div class="none" ng-if='recents.getMessageData.length==0'>暂无请求</div>
+
         </div>
     </ion-content>
 </ion-view>

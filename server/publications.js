@@ -10,7 +10,8 @@ Meteor.publish("AddMessage", function() {
             fields: {
                 userId: 1,
                 friendId: 1,
-                userData: 1
+                userData: 1,
+                friendData: 1
             }
         }
     );

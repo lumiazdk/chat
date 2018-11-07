@@ -13,13 +13,9 @@ import friendsTemplateUrl from "../templates/friends.html";
 import searchFriendsTemplateUrl from "../templates/search-friends.html";
 import favoritesTemplateUrl from "../templates/favorites.html";
 import recentsTemplateUrl from "../templates/recents.html";
-Router.route(
-    "/",
-    function() {
-        this.render("home");
-    },
-    { where: "server" }
-);
+Router.route('/', function () {
+    this.render('Home');
+  });
 class RoutesConfig extends Config {
     constructor() {
         super(...arguments);

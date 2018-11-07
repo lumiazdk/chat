@@ -18,7 +18,11 @@ export default class ChatsCtrl extends Controller {
     remove(chat) {
         this.callMethod("removeChat", chat._id);
     }
+    tochat(item){
+        console.log(22);
+        this.$state.go("tab.chat",{chatId:item._id});
+    }
 }
 
 ChatsCtrl.$name = "ChatsCtrl";
-ChatsCtrl.$inject = ["NewChat"];
+ChatsCtrl.$inject = ["NewChat",'$state'];

@@ -1,6 +1,6 @@
 import { Service } from 'angular-ecmascript/module-helpers';
  
-import newChatTemplateUrl from '../../templates/new-chat.html';
+import newChatTemplateUrl from '../../src/new-chat/new-chat.html';
  
 export default class NewChatService extends Service {
   constructor() {

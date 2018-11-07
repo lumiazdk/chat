@@ -6,7 +6,7 @@
         <ion-list>
             <ion-item ng-repeat="chat in chats.data | orderBy:'-lastMessage.timestamp'" class="item-chat item-remove-animate item-avatar item-icon-right"
                 type="item-text-wrap" ng-click='chats.tochat(chat)'>
-                <img ng-src="{{chat.profile.photo}}">
+                <img ng-src="{{chat | chatPicture}}">
                 <h2>{{ chat | chatName }}</h2>
                 <ng-switch on="chat.lastMessage.type">
                     <p ng-switch-when="text">{{ chat.lastMessage.text }}</p>

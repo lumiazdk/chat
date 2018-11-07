@@ -8,10 +8,8 @@ export default class ChatPictureFilter extends Filter {
  
     let otherId = _.without(chat.userIds, Meteor.userId())[0];
     let otherUser = Meteor.users.findOne(otherId);
-    console.log(otherUser)
     let hasPicture = otherUser && otherUser.profile && otherUser.profile.photo;
 
-    console.log(otherUser.profile.photo)
     return hasPicture ? otherUser.profile.photo :'/user-default.svg';
   };
 }

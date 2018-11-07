@@ -1,20 +1,20 @@
 import { _ } from "meteor/underscore";
 import { Meteor } from "meteor/meteor";
 import { Config, Runner } from "angular-ecmascript/module-helpers";
-import chatsTemplateUrl from "../templates/chats.html";
-import chatTemplateUrl from "../templates/chat.html";
-import tabsTemplateUrl from "../templates/tabs.html";
-import confirmationTemplateUrl from "../templates/confirmation.html";
-import loginTemplateUrl from "../templates/login.html";
-import registerTemplateUrl from "../templates/register.html";
-import profileTemplateUrl from "../templates/profile.html";
-import settingsTemplateUrl from "../templates/settings.html";
-import friendsTemplateUrl from "../templates/friends.html";
-import searchFriendsTemplateUrl from "../templates/search-friends.html";
-import favoritesTemplateUrl from "../templates/favorites.html";
-import recentsTemplateUrl from "../templates/recents.html";
-Router.route('/', function () {
-    this.render('Home');
+import chatsTemplateUrl from "./chats/chats.html";
+import chatTemplateUrl from "./chat/chat.html";
+import tabsTemplateUrl from "./tabs/tabs.html";
+import confirmationTemplateUrl from "./confirmation/confirmation.html";
+import loginTemplateUrl from "./login/login.html";
+import registerTemplateUrl from "./register/register.html";
+import profileTemplateUrl from "./profile/profile.html";
+import settingsTemplateUrl from "./settings/settings.html";
+import friendsTemplateUrl from "./friends/friends.html";
+import searchFriendsTemplateUrl from "./search-friends/search-friends.html";
+import favoritesTemplateUrl from "./favorites/favorites.html";
+import recentsTemplateUrl from "./recents/recents.html";
+Router.configure({
+    noRoutesTemplate: 'ReplacesSplashScreen'
   });
 class RoutesConfig extends Config {
     constructor() {

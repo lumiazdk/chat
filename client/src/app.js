@@ -7,33 +7,33 @@ import 'angular-moment';
 import 'ionic-scripts';
 import Angular from 'angular';
 import Loader from 'angular-ecmascript/module-loader';
-import InputDirective from '../directives/input.directive';
+import InputDirective from '../scripts/directives/input.directive';
 import { Meteor } from 'meteor/meteor';
 
 // Modules
-import ChatsCtrl from '../controllers/chats.controller';
-import ChatCtrl from '../controllers/chat.controller';
-import CalendarFilter from '../filters/calendar.filter';
-import ChatNameFilter from '../filters/chat-name.filter';
-import ChatPictureFilter from '../filters/chat-picture.filter';
-import LoginCtrl from '../controllers/login.controller';
-import ConfirmationCtrl from '../controllers/confirmation.controller';
-import ProfileCtrl from '../controllers/profile.controller';
-import SettingsCtrl from '../controllers/settings.controller';
-import NewChatCtrl from '../controllers/new-chat.controller';
-import RegisterCtrl from '../controllers/register.controller';
-import FriendsCtrl from '../controllers/friends.controller';
-import searchFriendsCtrl from '../controllers/search-friends.controller';
-import favoritesCtrl from '../controllers/favorites.controller';
-import recentsCtrl from '../controllers/recents.controller';
+import ChatsCtrl from './chats/chats.controller';
+import ChatCtrl from './chat/chat.controller';
+import CalendarFilter from '../scripts/filters/calendar.filter';
+import ChatNameFilter from '../scripts/filters/chat-name.filter';
+import ChatPictureFilter from '../scripts/filters/chat-picture.filter';
+import LoginCtrl from './login/login.controller';
+import ConfirmationCtrl from './confirmation/confirmation.controller';
+import ProfileCtrl from './profile/profile.controller';
+import SettingsCtrl from './settings/settings.controller';
+import NewChatCtrl from './new-chat/new-chat.controller';
+import RegisterCtrl from './register/register.controller';
+import FriendsCtrl from './friends/friends.controller';
+import searchFriendsCtrl from './search-friends/search-friends.controller';
+import favoritesCtrl from './favorites/favorites.controller';
+import recentsCtrl from './recents/recents.controller';
 
 
 
 
 
 // import RoutesConfig from '../routes';
-import NewChatService from '../services/new-chat.service';
-import Routes from '../routes';
+import NewChatService from '../scripts/services/new-chat.service';
+import Routes from './routes';
 import 'angular-meteor-auth';
 const App = 'Whatsapp';
 
@@ -78,4 +78,5 @@ else {
 
 function onReady() {
     Angular.bootstrap(document, [App]);
+    console.log(22)
 }

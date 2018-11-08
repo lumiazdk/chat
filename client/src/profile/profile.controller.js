@@ -1,7 +1,6 @@
 import { _ } from "meteor/underscore";
 import { Controller } from "angular-ecmascript/module-helpers";
-import axios from "axios";
-
+import axios from 'axios'
 export default class ProfileCtrl extends Controller {
     constructor($scope) {
         super(...arguments);
@@ -37,22 +36,13 @@ export default class ProfileCtrl extends Controller {
                 this.callMethod("updatePicture", data, err => {
                     if (!err) {
                         this.loading = false;
-
-                        layer.open({
-                            content: "修改成功",
-                            skin: "msg",
-                            time: 2 //2秒后自动关闭
-                        });
+                        layer.msg("修改成功");
                     }
                 });
             } else {
                 this.loading = false;
 
-                layer.open({
-                    content: "修改失败",
-                    skin: "msg",
-                    time: 2 //2秒后自动关闭
-                });
+                layer.msg("修改失败");
             }
         });
     }
@@ -62,7 +52,7 @@ export default class ProfileCtrl extends Controller {
         this.callMethod("updateName", this.profile.username, err => {
             if (err) return this.handleError(err);
             this.$state.go("tab.chats");
-        })
+        });
     }
 
     handleError(err) {

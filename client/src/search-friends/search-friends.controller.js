@@ -44,26 +44,17 @@ export default class searchFriendsCtrl extends Controller {
                             userId: Meteor.userId(),
                             friendId: item._id,
                             userData: Meteor.user(),
-                            friendData: Meteor.users
-                                .findOne({ _id: item._id }),
+                            friendData: Meteor.users.findOne({ _id: item._id }),
                             isSure: false
                         };
                         console.log(message);
                         AddMessage.insert(message, function(err) {
                             console.log(err);
                             if (!err) {
-                                layer.open({
-                                    content: "发送成功",
-                                    skin: "msg",
-                                    time: 2 //2秒后自动关闭
-                                });
+                                layer.msg("发送成功");
                                 return;
                             } else {
-                                layer.open({
-                                    content: "发送失败",
-                                    skin: "msg",
-                                    time: 2 //2秒后自动关闭
-                                });
+                                layer.msg("发送失败");
                                 return;
                             }
                         });

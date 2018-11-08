@@ -22,6 +22,7 @@ export default class ChatsCtrl extends Controller {
         console.log(22);
         this.$state.go("tab.chat",{chatId:item._id});
     }
+    
 }
 
 ChatsCtrl.$name = "ChatsCtrl";

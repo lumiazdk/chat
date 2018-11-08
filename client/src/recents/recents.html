@@ -1,23 +1,52 @@
 <ion-view title="最近">
     <ion-content class="recents" hide-nav-bar={{true}}>
         <p class="title">发出的请求</p>
-        <div class="list">
-            <a class="item item-avatar" ng-repeat="item in recents.sendMessageData">
+        <ion-list>
+            <ion-item ng-repeat="item in recents.sendMessageData" class="item-chat item-remove-animate item-avatar item-icon-right"
+                type="item-text-wrap" >
                 <img ng-src="{{item.friendData.profile.photo}}">
                 <h2>{{item.friendData.username}}</h2>
-                <p>加个好友吧？</p>
-            </a>
+                <span class="last-message-timestamp">{{ chat.lastMessage.timestamp | calendar }}</span>
+
+                <ng-switch on='"text"'>
+                    <p ng-switch-when="text">加个好友吧</p>
+                    <p ng-switch-when="picture">image</p>
+                </ng-switch>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+                <ion-option-button class="button-assertive" >
+                    删除
+                </ion-option-button>
+            </ion-item>
             <div class="none" ng-if='recents.sendMessageData.length==0'>暂无请求</div>
-        </div>
+
+        </ion-list>
         <p class="title">收到的请求</p>
-        <div class="list">
-            <a class="item item-avatar" ng-repeat="item in recents.getMessageData">
+         <ion-list>
+            <ion-item ng-repeat="item in recents.getMessageData" class="item-chat item-remove-animate item-avatar item-icon-right"
+                type="item-text-wrap" ng-click='chats.tochat(chat)'>
                 <img ng-src="{{item.userData.profile.photo}}">
                 <h2>{{item.userData.username}}</h2>
-                <p>加个好友吧？</p>
-            </a>
+                <span class="last-message-timestamp">{{ chat.lastMessage.timestamp | calendar }}</span>
+
+                <ng-switch on='"text"'>
+                    <p ng-switch-when="text">加个好友吧</p>
+                    <p ng-switch-when="picture">image</p>
+                </ng-switch>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+                <ion-option-button class="button-positive" >
+                    同意
+                </ion-option-button>
+                <ion-option-button class="button-energized" >
+                    拒绝
+                </ion-option-button>
+                <ion-option-button class="button-assertive" >
+                    删除
+                </ion-option-button>
+            </ion-item>
             <div class="none" ng-if='recents.getMessageData.length==0'>暂无请求</div>
 
-        </div>
+        </ion-list>
     </ion-content>
 </ion-view>

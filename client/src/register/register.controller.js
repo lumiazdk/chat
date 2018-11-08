@@ -6,43 +6,28 @@ import { check } from "meteor/check";
 export default class RegisterCtrl extends Controller {
     register() {
         if (_.isEmpty(this.username)) {
-            layer.open({
-                content: "请输入昵称",
-                skin: "msg",
-                time: 2 //2秒后自动关闭
-            });
+            layer.msg("请输入昵称");
+
             return;
         }
         if (_.isEmpty(this.email)) {
-            layer.open({
-                content: "请输入电子邮件",
-                skin: "msg",
-                time: 2 //2秒后自动关闭
-            });
+            layer.msg("请输入电子邮件");
+
             return;
         }
         if (_.isEmpty(this.password)) {
-            layer.open({
-                content: "请输入密码",
-                skin: "msg",
-                time: 2 //2秒后自动关闭
-            });
+            layer.msg("请输入密码");
+
             return;
         }
         if (_.isEmpty(this.repassword)) {
-            layer.open({
-                content: "请确认密码",
-                skin: "msg",
-                time: 2 //2秒后自动关闭
-            });
+            layer.msg("请确认密码");
+
             return;
         }
         if (this.password != this.repassword) {
-            layer.open({
-                content: "两次密码不一致",
-                skin: "msg",
-                time: 2 //2秒后自动关闭
-            });
+            layer.msg("两次密码不一致");
+
             return;
         }
         let registerData = {
@@ -58,19 +43,13 @@ export default class RegisterCtrl extends Controller {
         Accounts.createUser(registerData, res => {
             if (res) {
                 if (res.reason == "Email already exists.") {
-                    layer.open({
-                        content: "账户已存在",
-                        skin: "msg",
-                        time: 2 //2秒后自动关闭
-                    });
+                    layer.msg("账户已存在");
+
                     return;
                 }
             } else {
-                layer.open({
-                    content: "创建成功",
-                    skin: "msg",
-                    time: 2 //2秒后自动关闭
-                });
+                layer.msg("创建成功");
+
                 this.$state.go("tab.chats");
             }
         });

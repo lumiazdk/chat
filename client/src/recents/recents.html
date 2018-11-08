@@ -1,52 +1,65 @@
 <ion-view title="最近">
-    <ion-content class="recents" hide-nav-bar={{true}}>
+    <ion-content class="recents" hide-nav-bar="{{true}}">
         <p class="title">发出的请求</p>
         <ion-list>
             <ion-item ng-repeat="item in recents.sendMessageData" class="item-chat item-remove-animate item-avatar item-icon-right"
-                type="item-text-wrap" >
-                <img ng-src="{{item.friendData.profile.photo}}">
-                <h2>{{item.friendData.username}}</h2>
-                <span class="last-message-timestamp">{{ chat.lastMessage.timestamp | calendar }}</span>
+                type="item-text-wrap">
+                <img ng-src="{{item.friendData.profile.photo}}" />
+                <h2>{{ item.friendData.username }}</h2>
+                <span class="last-message-timestamp">{{
+                    chat.lastMessage.timestamp | calendar
+                    }}</span>
+                <span class="last-message-timestamp">11</span>
 
-                <ng-switch on='"text"'>
+                <span class="last-message-status" ng-if="item.status==0">待同意</span>
+                <span class="last-message-status" ng-if="item.status==1">已同意</span>
+                <span class="last-message-status" ng-if="item.status==2">已拒绝</span>
+                <ng-switch on="&quot;text&quot;">
                     <p ng-switch-when="text">加个好友吧</p>
                     <p ng-switch-when="picture">image</p>
                 </ng-switch>
                 <i class="icon ion-chevron-right icon-accessory"></i>
                 <i class="icon ion-chevron-right icon-accessory"></i>
-                <ion-option-button class="button-assertive" >
+                <ion-option-button class="button-assertive">
                     删除
                 </ion-option-button>
             </ion-item>
-            <div class="none" ng-if='recents.sendMessageData.length==0'>暂无请求</div>
-
+            <div class="none" ng-if="recents.sendMessageData.length==0">
+                暂无请求
+            </div>
         </ion-list>
         <p class="title">收到的请求</p>
-         <ion-list>
+        <ion-list>
             <ion-item ng-repeat="item in recents.getMessageData" class="item-chat item-remove-animate item-avatar item-icon-right"
-                type="item-text-wrap" ng-click='chats.tochat(chat)'>
-                <img ng-src="{{item.userData.profile.photo}}">
-                <h2>{{item.userData.username}}</h2>
-                <span class="last-message-timestamp">{{ chat.lastMessage.timestamp | calendar }}</span>
+                type="item-text-wrap">
+                <img ng-src="{{item.userData.profile.photo}}" />
+                <h2>{{ item.userData.username }}</h2>
 
-                <ng-switch on='"text"'>
+                <span class="last-message-timestamp">11</span>
+
+                <span class="last-message-status" ng-if="item.status==0">待同意</span>
+                <span class="last-message-status" ng-if="item.status==1">已同意</span>
+                <span class="last-message-status" ng-if="item.status==2">已拒绝</span>
+
+                <ng-switch on="&quot;text&quot;">
                     <p ng-switch-when="text">加个好友吧</p>
                     <p ng-switch-when="picture">image</p>
                 </ng-switch>
                 <i class="icon ion-chevron-right icon-accessory"></i>
                 <i class="icon ion-chevron-right icon-accessory"></i>
-                <ion-option-button class="button-positive" >
+                <ion-option-button class="button-positive" ng-click='recents.sureAddMessage(item)'>
                     同意
                 </ion-option-button>
-                <ion-option-button class="button-energized" >
+                <ion-option-button class="button-energized" ng-click='recents.refuseAddMessage(item)'>
                     拒绝
                 </ion-option-button>
-                <ion-option-button class="button-assertive" >
+                <ion-option-button class="button-assertive">
                     删除
                 </ion-option-button>
             </ion-item>
-            <div class="none" ng-if='recents.getMessageData.length==0'>暂无请求</div>
-
+            <div class="none" ng-if="recents.getMessageData.length==0">
+                暂无请求
+            </div>
         </ion-list>
     </ion-content>
 </ion-view>

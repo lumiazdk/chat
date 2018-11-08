@@ -45,7 +45,8 @@ export default class searchFriendsCtrl extends Controller {
                             friendId: item._id,
                             userData: Meteor.user(),
                             friendData: Meteor.users.findOne({ _id: item._id }),
-                            isSure: false
+                            isSure: false,
+                            status:0
                         };
                         console.log(message);
                         AddMessage.insert(message, function(err) {

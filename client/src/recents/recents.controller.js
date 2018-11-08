@@ -8,21 +8,21 @@ export default class recentsCtrl extends Controller {
         super(...arguments);
         this.subscribe("AddMessage");
         this.helpers({
-            
-            sendMessageData(){
-                let data=AddMessage.find({userId:Meteor.userId()}).fetch()
+
+            sendMessageData() {
+                let data = AddMessage.find({ userId: Meteor.userId() }).fetch()
                 console.log(data)
                 return data
             },
-            getMessageData(){
-                let data=AddMessage.find({friendId:Meteor.userId()}).fetch()
+            getMessageData() {
+                let data = AddMessage.find({ friendId: Meteor.userId() }).fetch()
                 console.log(data)
                 return data
             }
         });
     }
-    getAddMessage(){
-        let data=AddMessage.find({}).fetch()
+    getAddMessage() {
+        let data = AddMessage.find({}).fetch()
     }
 
     userLists = [];
@@ -54,11 +54,11 @@ export default class recentsCtrl extends Controller {
                         let message = {
                             userId: Meteor.userId(),
                             friendId: item._id,
-                            userdata:Meteor.user(),
-                            isSure:false
+                            userdata: Meteor.user(),
+                            isSure: false
                         }
                         console.log(message)
-                        AddMessage.insert(message,function(err){
+                        AddMessage.insert(message, function (err) {
                             console.log(err)
                         });
                     }
@@ -66,6 +66,12 @@ export default class recentsCtrl extends Controller {
             ]
         });
 
+    }
+    refuseAddMessage(item) {
+        AddMessage.update({ _id: item._id }, { $set: { 'status': 2 } });
+    }
+    sureAddMessage(item) {
+        AddMessage.update({ _id: item._id }, { $set: { 'status': 1 } });
     }
     handleError(err) {
         this.$log.error("Login error ", err);

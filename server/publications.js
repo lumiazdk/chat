@@ -11,7 +11,8 @@ Meteor.publish("AddMessage", function() {
                 userId: 1,
                 friendId: 1,
                 userData: 1,
-                friendData: 1
+                friendData: 1,
+                status: 1
             }
         }
     );

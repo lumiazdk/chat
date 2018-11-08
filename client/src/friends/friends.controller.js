@@ -6,6 +6,16 @@ import { Friends } from '../../../lib/collections';
 export default class friendsCtrl extends Controller {
   constructor() {
     super(...arguments);
+    this.subscribe("Friends");
+    this.helpers({
+
+      friendsList() {
+          let data = Friends.find({ userId: Meteor.userId() }).fetch()
+          
+          console.log(data)
+          return data
+      }
+  });
     
   }
  toSearchFriends(){

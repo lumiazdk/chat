@@ -17,6 +17,8 @@ import ChatCtrl from "./chat/chat.controller";
 import CalendarFilter from "../scripts/filters/calendar.filter";
 import ChatNameFilter from "../scripts/filters/chat-name.filter";
 import ChatPictureFilter from "../scripts/filters/chat-picture.filter";
+import FriendPictureFilter from "../src/friends/friends-picture.filter";
+
 import LoginCtrl from "./login/login.controller";
 import ConfirmationCtrl from "./confirmation/confirmation.controller";
 import ProfileCtrl from "./profile/profile.controller";
@@ -50,6 +52,8 @@ new Loader(App)
     .load(CalendarFilter)
     .load(ChatNameFilter)
     .load(ChatPictureFilter)
+    .load(FriendPictureFilter)
+
     .load(ConfirmationCtrl)
     .load(ProfileCtrl)
     .load(SettingsCtrl)

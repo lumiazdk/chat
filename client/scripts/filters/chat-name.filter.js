@@ -7,6 +7,7 @@ export default class ChatNameFilter extends Filter {
     if (!chat) return;
  
     let otherId = _.without(chat.userIds, Meteor.userId())[0];
+    console.log(chat.userIds)
     let otherUser = Meteor.users.findOne(otherId);
     let hasName = otherUser && otherUser.username
  

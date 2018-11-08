@@ -1,10 +1,24 @@
-<ion-view title="联系人">
+<ion-view view-title="联系">
     <ion-nav-buttons side="right">
         <button  class="button  button-positive button-icon" ng-click="friends.toSearchFriends()"><i class="icon ion-plus-circled"></i></button>
     </ion-nav-buttons>
     <ion-content class="friends">
-        <div>
-            friends
-        </div>
+        <ion-list>
+            <ion-item ng-repeat="friend in friends.friendsList" class="item-chat item-remove-animate item-avatar item-icon-right"
+                type="item-text-wrap" ng-click='friends.tochat(chat)'>
+                <img ng-src="{{friend | friendPicture}}">
+                <h2>{{ friend | chatName }}</h2>
+                <ng-switch on="'text'">
+                    <p ng-switch-when="text">{{ chat.lastMessage.text }}</p>
+                    <p ng-switch-when="picture">image</p>
+                </ng-switch>
+                <span class="last-message-timestamp">{{ friend.lastMessage.timestamp | calendar }}</span>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+                <ion-option-button class="button-assertive" ng-click="friends.remove(chat)">
+                    删除
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
     </ion-content>
 </ion-view>

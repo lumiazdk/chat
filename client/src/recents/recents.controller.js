@@ -1,7 +1,8 @@
 import { _ } from "meteor/underscore";
-import { Accounts } from "meteor/accounts-base";
 import { Controller } from "angular-ecmascript/module-helpers";
 import { AddMessage } from "../../../lib/collections";
+import { Friends } from "../../../lib/collections";
+
 
 export default class recentsCtrl extends Controller {
     constructor() {
@@ -11,13 +12,27 @@ export default class recentsCtrl extends Controller {
 
             sendMessageData() {
                 let data = AddMessage.find({ userId: Meteor.userId() }).fetch()
+                let arr = []
+                data.forEach(item => {
+                    if (item.selfDelete == 0) {
+                        arr.push(item)
+                    }
+                })
                 console.log(data)
-                return data
+                return arr
             },
             getMessageData() {
                 let data = AddMessage.find({ friendId: Meteor.userId() }).fetch()
+                let arr = []
                 console.log(data)
-                return data
+
+                data.forEach(item => {
+                    if (item.friendDelete == 0) {
+                        arr.push(item)
+                    }
+                })
+                console.log(data)
+                return arr
             }
         });
     }
@@ -68,10 +83,28 @@ export default class recentsCtrl extends Controller {
 
     }
     refuseAddMessage(item) {
-        AddMessage.update({ _id: item._id }, { $set: { 'status': 2 } });
+        AddMessage.update({ _id: item._id }, { $set: { 'status': 2 } });//2拒绝
     }
     sureAddMessage(item) {
-        AddMessage.update({ _id: item._id }, { $set: { 'status': 1 } });
+        AddMessage.update({ _id: item._id }, { $set: { 'status': 1 } });//1已同意
+        let self = {
+            userId: Meteor.userId(),
+            friendsId: item.userId
+        }
+        let friend = {
+            friendsId: Meteor.userId(),
+            userId: item.userId
+        }
+        Friends.insert(self);
+        Friends.insert(friend);
+
+    }
+    deleteAddMessageSelf(item) {
+        AddMessage.update({ _id: item._id }, { $set: { 'selfDelete': 3 } });//3删除
+
+    }
+    deleteAddMessageFriend(item) {
+        AddMessage.update({ _id: item._id }, { $set: { 'friendDelete': 3 } });//3删除
     }
     handleError(err) {
         this.$log.error("Login error ", err);

@@ -67,7 +67,7 @@ export default class searchFriendsCtrl extends Controller {
         });
     }
     goback() {
-        window.history.back();
+        this.$state.go('tab.friends')
     }
     handleError(err) {
         this.$log.error("Login error ", err);

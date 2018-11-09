@@ -55,7 +55,7 @@ export default class ProfileCtrl extends Controller {
         });
     }
     goback() {
-        window.history.back();
+        this.$state.go('tab.settings')
     }
     handleError(err) {
         if (err.error == "cancel") return;

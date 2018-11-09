@@ -86,7 +86,7 @@ export default class ChatCtrl extends Controller {
         }, 300);
     }
     goback() {
-        window.history.back();
+        this.$state.go('tab.chats')
     }
     handleError(err) {
         if (err.error == 'cancel') return;
@@ -101,4 +101,4 @@ export default class ChatCtrl extends Controller {
 }
 
 ChatCtrl.$name = 'ChatCtrl';
-ChatCtrl.$inject = ['$stateParams', '$timeout', '$ionicScrollDelegate', '$ionicPopup', '$log'];
+ChatCtrl.$inject = ['$stateParams', '$timeout', '$ionicScrollDelegate', '$ionicPopup', '$log','$state'];

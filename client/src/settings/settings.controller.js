@@ -2,6 +2,15 @@ import { Meteor } from 'meteor/meteor';
 import { Controller } from 'angular-ecmascript/module-helpers';
  
 export default class SettingsCtrl extends Controller {
+  constructor($scope) {
+    super(...arguments);
+    let that = this;
+    this.helpers({
+        profile() {
+            return that.currentUser;
+        }
+    });
+}
   logout() {
     Meteor.logout((err) => {
       if (err) return this.handleError(err);

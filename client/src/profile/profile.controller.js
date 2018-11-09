@@ -10,7 +10,7 @@ export default class ProfileCtrl extends Controller {
                 return that.currentUser;
             }
         });
-        this.$scope.uploadImage = function(files) {
+        this.$scope.uploadImage = function (files) {
             // 上传代码
             console.log(files);
             that.upload(files);
@@ -54,7 +54,9 @@ export default class ProfileCtrl extends Controller {
             this.$state.go("tab.chats");
         });
     }
-
+    goback() {
+        window.history.back();
+    }
     handleError(err) {
         if (err.error == "cancel") return;
         this.$log.error("Profile save error ", err);

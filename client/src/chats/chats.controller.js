@@ -19,7 +19,6 @@ export default class ChatsCtrl extends Controller {
         this.callMethod("removeChat", chat._id);
     }
     tochat(item){
-        console.log(22);
         this.$state.go("tab.chat",{chatId:item._id});
     }
     

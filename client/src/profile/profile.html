@@ -1,5 +1,9 @@
 <ion-view title="个人资料">
-
+    <ion-nav-buttons side="left">
+        <button class="button button-clear " ng-click="profile.goback()">
+          <i class="icon ion-ios-arrow-back"></i>
+        </button>
+      </ion-nav-buttons>
   <ion-nav-buttons side="right" class="hide">
     <button ng-click="profile.updateName()" ng-disabled="!profile.name || profile.name.length === 0" class="button button-clear button-positive">确定</button>
   </ion-nav-buttons>

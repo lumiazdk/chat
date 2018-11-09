@@ -1,6 +1,13 @@
 <ion-view view-title="设置">
-  <ion-content>
-    
+  <ion-content class="settings">
+      <div class="profile-picture">
+          <div class="uploadwraper">
+            <img ng-src="{{ settings.currentUser.profile.photo }}" alt="settings picture">
+          </div>
+        </div>
+          <div class="name">
+            {{settings.profile.username}}
+          </div>
     <ion-list>
       <ion-item class="item-icon-right" ng-click='settings.$state.go("profile")'>
         个人资料

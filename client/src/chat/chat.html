@@ -1,4 +1,9 @@
 <ion-view title="{{ chat.data | chatName }}">
+    <ion-nav-buttons side="left">
+        <button class="button button-clear " ng-click="chat.goback()">
+            <i class="icon ion-ios-arrow-back"></i>
+        </button>
+    </ion-nav-buttons>
     <ion-nav-buttons side="right">
         <button class="button button-clear">
             <img class="header-picture" ng-src="{{ chat.data.picture }}">
@@ -9,7 +14,7 @@
             <div ng-repeat="message in chat.messages" class="message-wrapper">
                 <!-- {{message}}
                 {{$root.currentUser._id}} -->
-                
+
                 <div class="message" ng-class="message.userId === $root.currentUser._id ? 'message-mine' : 'message-other'">
                     <ng-switch on="message.type">
                         <div ng-switch-when="text" class="text">{{ message.text }}</div>

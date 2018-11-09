@@ -18,6 +18,8 @@ import CalendarFilter from "../scripts/filters/calendar.filter";
 import ChatNameFilter from "../scripts/filters/chat-name.filter";
 import ChatPictureFilter from "../scripts/filters/chat-picture.filter";
 import FriendPictureFilter from "../src/friends/friends-picture.filter";
+import FriendNameFilter from "../src/friends/friends-name.filter";
+
 
 import LoginCtrl from "./login/login.controller";
 import ConfirmationCtrl from "./confirmation/confirmation.controller";
@@ -53,6 +55,8 @@ new Loader(App)
     .load(ChatNameFilter)
     .load(ChatPictureFilter)
     .load(FriendPictureFilter)
+    .load(FriendNameFilter)
+
 
     .load(ConfirmationCtrl)
     .load(ProfileCtrl)

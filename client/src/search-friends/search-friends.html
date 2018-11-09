@@ -1,5 +1,9 @@
 <ion-view title="搜索好友">
-
+  <ion-nav-buttons side="left">
+    <button class="button button-clear " ng-click="searchFriends.goback()">
+      <i class="icon ion-ios-arrow-back"></i>
+    </button>
+  </ion-nav-buttons>
   <ion-content class="searchFriends" hide-nav-bar={{true}}>
     <div class="list list-inset">
       <label class="item item-input">
@@ -7,7 +11,8 @@
         <input type="text" placeholder="搜索" ng-change="searchFriends.search()" ng-model="searchFriends.keyValue">
       </label>
     </div>
-    <span class="item item-avatar" ng-repeat='item in searchFriends.userLists' ng-click="searchFriends.sureAddFriend(item)">
+    <span class="item item-avatar" ng-repeat='item in searchFriends.userLists' ng-click="searchFriends.sureAddFriend(item)"
+      ng-if='item._id!=currentUser._id'>
       <img ng-src="{{item.profile.photo}}">
       <h2>{{item.username}}</h2>
       <p>{{item.emails[0].address}}</p>

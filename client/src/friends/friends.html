@@ -5,9 +5,9 @@
     <ion-content class="friends">
         <ion-list>
             <ion-item ng-repeat="friend in friends.friendsList" class="item-chat item-remove-animate item-avatar item-icon-right"
-                type="item-text-wrap" ng-click='friends.tochat(chat)'>
+                type="item-text-wrap" ng-click='friends.newChat(friend.friendsId)'>
                 <img ng-src="{{friend | friendPicture}}">
-                <h2>{{ friend | chatName }}</h2>
+                <h2>{{ friend | friendName }}</h2>
                 <ng-switch on="'text'">
                     <p ng-switch-when="text">{{ chat.lastMessage.text }}</p>
                     <p ng-switch-when="picture">image</p>

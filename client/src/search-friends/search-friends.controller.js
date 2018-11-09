@@ -8,7 +8,7 @@ export default class searchFriendsCtrl extends Controller {
         super(...arguments);
         this.subscribe("users");
         this.helpers({
-            data() {},
+            data() { },
             users() {
                 return Meteor.users.find();
             }
@@ -39,19 +39,19 @@ export default class searchFriendsCtrl extends Controller {
                 {
                     text: "<b>确定</b>",
                     type: "button-positive",
-                    onTap: function(e) {
+                    onTap: function (e) {
                         let message = {
                             userId: Meteor.userId(),
                             friendId: item._id,
                             userData: Meteor.user(),
                             friendData: Meteor.users.findOne({ _id: item._id }),
                             isSure: false,
-                            status:0,
-                            selfDelete:0,
-                            friendDelete:0
+                            status: 0,
+                            selfDelete: 0,
+                            friendDelete: 0
                         };
                         console.log(message);
-                        AddMessage.insert(message, function(err) {
+                        AddMessage.insert(message, function (err) {
                             console.log(err);
                             if (!err) {
                                 layer.msg("发送成功");
@@ -66,6 +66,9 @@ export default class searchFriendsCtrl extends Controller {
             ]
         });
     }
+    goback() {
+        window.history.back();
+    }
     handleError(err) {
         this.$log.error("Login error ", err);
 
@@ -78,4 +81,4 @@ export default class searchFriendsCtrl extends Controller {
 }
 
 searchFriendsCtrl.$name = "searchFriendsCtrl";
-searchFriendsCtrl.$inject = ["$state", "$ionicLoading", "$ionicPopup", "$log"];
+searchFriendsCtrl.$inject = ["$state", "$ionicLoading", "$ionicPopup", "$log", '$ionicHistory'];

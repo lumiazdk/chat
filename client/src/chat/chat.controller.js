@@ -85,6 +85,9 @@ export default class ChatCtrl extends Controller {
             this.$ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(animate);
         }, 300);
     }
+    goback() {
+        window.history.back();
+    }
     handleError(err) {
         if (err.error == 'cancel') return;
         this.$log.error('Profile save error ', err);

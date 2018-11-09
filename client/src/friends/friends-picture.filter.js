@@ -6,8 +6,8 @@ export default class FriendPictureFilter extends Filter {
   filter(friend) {
     if (!friend) return;
 
-    if (friend.friendsId) {
-      let otherUser = Meteor.users.findOne({ _id: friend.friendsId })
+    if (friend.friendId) {
+      let otherUser = Meteor.users.findOne({ _id: friend.friendId })
       let hasPicture = otherUser && otherUser.profile && otherUser.profile.photo;
 
       return hasPicture ? otherUser.profile.photo : '/user-default.svg';

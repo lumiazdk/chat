@@ -6,9 +6,9 @@ export default class FriendNameFilter extends Filter {
   filter(friend) {
     if (!friend) return;
 
-    if (friend.friendsId) {
+    if (friend.friendId) {
 
-      let otherUser = Meteor.users.findOne({ _id: friend.friendsId });
+      let otherUser = Meteor.users.findOne({ _id: friend.friendId });
       let hasName = otherUser && otherUser.username
 
       return hasName ? otherUser.username : 'NO NAME';

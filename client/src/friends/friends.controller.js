@@ -11,15 +11,12 @@ export default class friendsCtrl extends Controller {
 
       friendsList() {
         let data = Friends.find({ userId: Meteor.userId() }).fetch()
-
-        console.log(data)
         return data
       }
     });
 
   }
   toSearchFriends() {
-    console.log(22)
     this.$state.go('tab.searchFriends')
   }
   remove(chat) {
@@ -27,7 +24,6 @@ export default class friendsCtrl extends Controller {
   }
   newChat(userId) {
     let chat = Chats.findOne({ userIds: { $all: [this.currentUserId, userId] } });
-    console.log(userId)
     if (chat) {
       return this.goToChat(chat._id);
     }

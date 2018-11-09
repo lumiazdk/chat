@@ -89,10 +89,10 @@ export default class recentsCtrl extends Controller {
         AddMessage.update({ _id: item._id }, { $set: { 'status': 1 } });//1已同意
         let self = {
             userId: Meteor.userId(),
-            friendsId: item.userId
+            friendId: item.userId
         }
         let friend = {
-            friendsId: Meteor.userId(),
+            friendId: Meteor.userId(),
             userId: item.userId
         }
         Friends.insert(self);

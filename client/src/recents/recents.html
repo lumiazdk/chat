@@ -4,8 +4,8 @@
         <ion-list>
             <ion-item ng-repeat="item in recents.sendMessageData" class="item-chat item-remove-animate item-avatar item-icon-right"
                 type="item-text-wrap">
-                <img ng-src="{{item.friendData.profile.photo}}" />
-                <h2>{{ item.friendData.username }}</h2>
+                <img ng-src="{{item | friendPicture}}">
+                <h2>{{ item | friendName }}</h2>
                 <span class="last-message-timestamp">{{
                     chat.lastMessage.timestamp | calendar
                     }}</span>
@@ -32,8 +32,8 @@
         <ion-list>
             <ion-item ng-repeat="item in recents.getMessageData" class="item-chat item-remove-animate item-avatar item-icon-right"
                 type="item-text-wrap">
-                <img ng-src="{{item.userData.profile.photo}}" />
-                <h2>{{ item.userData.username }}</h2>
+                <img ng-src="{{item | friendPicture}}">
+                <h2>{{ item | friendName }}</h2>
 
                 <span class="last-message-timestamp">11</span>
 

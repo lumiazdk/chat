@@ -50,7 +50,6 @@ export default class LoginCtrl extends Controller {
                 that.$state.go("tab.chats");
             }
 
-            console.log("ERROR: " + error.reason);
         });
     }
     logout() {

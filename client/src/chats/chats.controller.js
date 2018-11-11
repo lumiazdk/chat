@@ -25,4 +25,4 @@ export default class ChatsCtrl extends Controller {
 }
 
 ChatsCtrl.$name = "ChatsCtrl";
-ChatsCtrl.$inject = ["NewChat",'$state'];
+ChatsCtrl.$inject = ['$state'];

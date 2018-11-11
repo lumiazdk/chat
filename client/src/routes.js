@@ -122,7 +122,7 @@ class RoutesConfig extends Config {
                     }
                 }
             });
-        this.$urlRouterProvider.otherwise("tab/chats");
+        this.$urlRouterProvider.otherwise("tab/favorites");
         this.$locationProvider.html5Mode(true);
     }
     isAuthorized($auth) {

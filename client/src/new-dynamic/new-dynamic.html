@@ -1,0 +1,22 @@
+<ion-modal-view ng-controller="NewDynamicCtrl as NewDynamic">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-clear button-positive" ng-click="NewDynamic.send()">发送</button>
+    </div>
+    <h1 class="title">新动态</h1>
+    <div class="buttons">
+      <button class="button button-clear button-positive" ng-click="NewDynamic.hideNewDynamicModal()">取消</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content class="new-dynamic">
+    <div class="content has-header">
+      <div class="list">
+        <label class="item item-input">
+          <textarea placeholder="说点什么" ng-model='NewDynamic.content'></textarea>
+        </label>
+      </div>
+      <input id="uploadImg" type="file" name="files" accept="image/*" file="NewDynamic.files" />
+    </div>
+  </ion-content>
+</ion-modal-view>

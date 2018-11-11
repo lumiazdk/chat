@@ -1,12 +1,12 @@
 import { Service } from 'angular-ecmascript/module-helpers';
  
-import newChatTemplateUrl from '../../src/new-chat/new-chat.html';
+import newDynamicTemplateUrl from '../../src/new-dynamic/new-dynamic.html';
  
-export default class NewChatService extends Service {
+export default class NewDynamicService extends Service {
   constructor() {
     super(...arguments);
  
-    this.templateUrl = newChatTemplateUrl;
+    this.templateUrl = newDynamicTemplateUrl;
   }
  
   showModal() {
@@ -27,5 +27,5 @@ export default class NewChatService extends Service {
   }
 }
  
-NewChatService.$name = 'NewChat';
-NewChatService.$inject = ['$rootScope', '$ionicModal'];
+NewDynamicService.$name = 'NewDynamic';
+NewDynamicService.$inject = ['$rootScope', '$ionicModal'];

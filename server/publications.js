@@ -1,5 +1,5 @@
 import { Meteor } from "meteor/meteor";
-import { Chats, Messages, Friends, AddMessage } from "../lib/collections";
+import { Chats, Messages, Friends, AddMessage, Dynamic, Fabulous, Comments } from "../lib/collections";
 Meteor.publish("Friends", function () {
     return Friends.find({}, {
         userId: 1,
@@ -13,11 +13,50 @@ Meteor.publish("AddMessage", function () {
             fields: {
                 userId: 1,
                 friendId: 1,
-                userData: 1,
-                friendData: 1,
                 status: 1,
                 selfDelete: 1,
                 friendDelete: 1
+            }
+        }
+    );
+});
+Meteor.publish("Dynamic", function () {
+    return Dynamic.find(
+        {},
+        {
+            fields: {
+                content: 1,
+                imgList: 1,
+                createdAt: 1,
+                userId: 1
+
+            }
+        }
+    );
+});
+Meteor.publish("Comments", function () {
+    return Comments.find(
+        {},
+        {
+            fields: {
+                dynamicid: 1,
+                userId: 1,
+                content: 1,
+                becomment: 1,
+                createdAt: 1
+
+            }
+        }
+    );
+});
+Meteor.publish("Fabulous", function () {
+    return Fabulous.find(
+        {},
+        {
+            fields: {
+                dynamicid: 1,
+                fabulouspeople: 1
+
             }
         }
     );

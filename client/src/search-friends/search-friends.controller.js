@@ -43,8 +43,6 @@ export default class searchFriendsCtrl extends Controller {
                         let message = {
                             userId: Meteor.userId(),
                             friendId: item._id,
-                            userData: Meteor.user(),
-                            friendData: Meteor.users.findOne({ _id: item._id }),
                             isSure: false,
                             status: 0,
                             selfDelete: 0,

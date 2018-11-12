@@ -1,14 +1,13 @@
 import { _ } from "meteor/underscore";
 import { Accounts } from "meteor/accounts-base";
 import { Controller } from "angular-ecmascript/module-helpers";
-import { Dynamic, Fabulous, Comments, Friends } from "../../../lib/collections";
+import { Dynamic, Fabulous, Friends } from "../../../lib/collections";
 
 export default class favoritesCtrl extends Controller {
     constructor() {
         super(...arguments);
         this.subscribe("Dynamic");
         this.subscribe("Fabulous");
-        this.subscribe("Comments");
         this.subscribe("users");
         this.subscribe("Friends");
 

@@ -54,7 +54,6 @@ export default class LoginCtrl extends Controller {
     }
     logout() {
         Meteor.logout(res => {
-            console.log(22);
 
             layer.msg("退出成功");
         });
@@ -64,9 +63,7 @@ export default class LoginCtrl extends Controller {
     }
     forgotpassword() {
         // Accounts.forgotPassword('112657222821@qq.com', function (res) {
-        //   console.log(res)
         // })
-        console.log(this.users);
 
         Accounts.sendResetPasswordEmail("111", ["1126572821@qq.com"], {});
     }

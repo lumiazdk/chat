@@ -139,7 +139,6 @@ class RoutesRunner extends Runner {
     run() {
         this.$rootScope.$on("$stateChangeError", (...args) => {
             const err = _.last(args);
-            console.log(Meteor.userId());
             if (err === "AUTH_REQUIRED" && !Meteor.userId()) {
                 this.$state.go("login");
             }

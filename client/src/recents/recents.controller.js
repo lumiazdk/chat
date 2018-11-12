@@ -18,20 +18,17 @@ export default class recentsCtrl extends Controller {
                         arr.push(item)
                     }
                 })
-                console.log(data)
                 return arr
             },
             getMessageData() {
                 let data = AddMessage.find({ friendId: Meteor.userId() }).fetch()
                 let arr = []
-                console.log(data)
 
                 data.forEach(item => {
                     if (item.friendDelete == 0) {
                         arr.push(item)
                     }
                 })
-                console.log(data)
                 return arr
             }
         });
@@ -54,7 +51,6 @@ export default class recentsCtrl extends Controller {
                 { limit: 10 }
             )
             .fetch();
-        console.log(this.userLists);
     }
     sureAddFriend(item) {
         let confirmPopup = this.$ionicPopup.confirm({
@@ -72,9 +68,7 @@ export default class recentsCtrl extends Controller {
                             userdata: Meteor.user(),
                             isSure: false
                         }
-                        console.log(message)
                         AddMessage.insert(message, function (err) {
-                            console.log(err)
                         });
                     }
                 },

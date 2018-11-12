@@ -1,9 +1,9 @@
 <ion-view title="个人资料">
-    <ion-nav-buttons side="left">
-        <button class="button button-clear " ng-click="profile.goback()">
-          <i class="icon ion-ios-arrow-back"></i>
-        </button>
-      </ion-nav-buttons>
+  <ion-nav-buttons side="left">
+    <button class="button button-clear " ng-click="profile.goback()">
+      <i class="icon ion-ios-arrow-back"></i>
+    </button>
+  </ion-nav-buttons>
   <ion-nav-buttons side="right" class="hide">
     <button ng-click="profile.updateName()" ng-disabled="!profile.name || profile.name.length === 0" class="button button-clear button-positive">确定</button>
   </ion-nav-buttons>
@@ -19,8 +19,12 @@
     </div>
     <div class="list profile-name">
       <label class="item item-input">
-        <input ng-model="profile.profile.username" on-blur="profile.updateName()" type="text" placeholder="你的姓名">
+        <input ng-model="profile.profile.username" type="text" placeholder="你的姓名">
       </label>
+    </div>
+    <div class="save">
+      <button class="button button-balanced" ng-click="profile.updateName()">保存</button>
+
     </div>
   </ion-content>
 </ion-view>

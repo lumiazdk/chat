@@ -1,12 +1,14 @@
 import { _ } from 'meteor/underscore';
 import { Accounts } from 'meteor/accounts-base';
 import { Controller } from 'angular-ecmascript/module-helpers';
-import { Friends,Chats } from '../../../lib/collections';
+import { Friends, Chats } from '../../../lib/collections';
 
 export default class friendsCtrl extends Controller {
   constructor() {
     super(...arguments);
     this.subscribe("Friends");
+    this.subscribe("users");
+
     this.helpers({
 
       friendsList() {
@@ -19,8 +21,31 @@ export default class friendsCtrl extends Controller {
   toSearchFriends() {
     this.$state.go('tab.searchFriends')
   }
-  remove(chat) {
-    this.callMethod("removeChat", chat._id);
+  remove(friend) {
+    let confirmPopup = this.$ionicPopup.confirm({
+      title: "删除好友",
+      template: "你确定删除此好友吗？",
+      buttons: [
+        { text: "取消" },
+        {
+          text: "<b>确定</b>",
+          type: "button-positive",
+          onTap: function (e) {
+
+            Friends.remove({ _id: friend._id }, function (err) {
+              console.log(err);
+              if (!err) {
+                layer.msg("删除成功");
+                return;
+              } else {
+                layer.msg("删除失败");
+                return;
+              }
+            });
+          }
+        }
+      ]
+    });
   }
   newChat(userId) {
     let chat = Chats.findOne({ userIds: { $all: [this.currentUserId, userId] } });

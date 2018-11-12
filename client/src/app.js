@@ -24,6 +24,8 @@ import userIdPictureFilter from "../src/favorites/userId-picture.filter";
 import getFabulousFilter from "../src/favorites/getFabulous.filter";
 import getCommentsFilter from "../src/favorites/getComments.filter";
 import commentNameFilter from "../src/favorites/commentsName.filter";
+import autographFilter from "../src/friends/getAutograph.filter";
+
 
 
 
@@ -70,6 +72,8 @@ new Loader(App)
     .load(getFabulousFilter)
     .load(getCommentsFilter)
     .load(commentNameFilter)
+    .load(autographFilter)
+
 
 
 

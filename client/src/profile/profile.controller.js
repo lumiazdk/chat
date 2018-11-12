@@ -51,7 +51,7 @@ export default class ProfileCtrl extends Controller {
 
         this.callMethod("updateName", this.profile.username, err => {
             if (err) return this.handleError(err);
-            this.$state.go("tab.chats");
+            layer.msg("保存成功");
         });
     }
     goback() {

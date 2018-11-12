@@ -1,7 +1,7 @@
 import { _ } from "meteor/underscore";
 import { Accounts } from "meteor/accounts-base";
 import { Controller } from "angular-ecmascript/module-helpers";
-import { Dynamic, Fabulous, Comments } from "../../../lib/collections";
+import { Dynamic, Fabulous, Comments, Friends } from "../../../lib/collections";
 
 export default class favoritesCtrl extends Controller {
     constructor() {
@@ -9,12 +9,22 @@ export default class favoritesCtrl extends Controller {
         this.subscribe("Dynamic");
         this.subscribe("Fabulous");
         this.subscribe("Comments");
-
+        this.subscribe("users");
+        this.subscribe("Friends");
 
         this.helpers({
             dynamicList() {
-                let data = Dynamic.find().fetch().reverse()
+                var friends = Friends.find({ 'userId': Meteor.userId() }, { sort: { createdAt: -1 } }).fetch()
+                var arr = [Meteor.userId()]
+                friends.forEach(item => {
+                    arr.push(item.friendId)
+                })
+                console.log(arr)
+                let data = Dynamic.find({ "userId": { $in: arr } }, { sort: { createdAt: -1 } }).fetch()
+                console.log(data)
                 return data
+
+
             }
         });
         $(document).ready(function () {

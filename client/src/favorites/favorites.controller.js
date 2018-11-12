@@ -75,19 +75,48 @@ export default class favoritesCtrl extends Controller {
         }
         this.dynamicList = Dynamic.find().fetch().reverse()
     }
-    sendComment(item) {
-        var comment = {
-            dynamicid: this.item._id,
-            userId: Meteor.userId(),
-            content: this.commentText,
-            becomment: 0,
-            createdAt: new Date()
+    sendComment() {
+        var item = JSON.parse(JSON.stringify(this.item))
+        console.log(item)
+        if (this.replyStatus == false) {
+            var comment = {
+                dynamicid: item._id,
+                userId: Meteor.userId(),
+                content: this.commentText,
+                becomment: 0,
+                createdAt: new Date()
+            }
+        } else {
+            var comment = {
+                dynamicid: item._id,
+                userId: Meteor.userId(),
+                content: this.commentText,
+                becomment: this.toCommentid,
+                createdAt: new Date()
+            }
         }
-        Comments.insert(comment);
+
+        item.comments.push(comment)
+        console.log(item.comments)
+        item.comments.forEach(item => {
+            delete item.$$hashKey
+        })
+        // return
+        this.callMethod('updateComments', {
+            _id: item._id,
+            comment: item.comments
+        });
 
 
     }
+    reply(id, item) {
+        this.replyStatus = true
+        this.item = item
+        this.toCommentid = id
+        console.log(33)
+    }
     commentTap(item) {
+        this.replyStatus = false
         this.item = item
     }
     userLists = [];

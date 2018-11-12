@@ -31,6 +31,7 @@ export default class NewDynamicCtrl extends Controller {
       userId:Meteor.userId(),
       content: this.content,
       imgList: this.listImg,
+      comments:[],
       createdAt: new Date()
 
     }

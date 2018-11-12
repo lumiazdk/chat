@@ -28,11 +28,19 @@
                             <div class="r"></div>
                             <div class="cmt-wrap">
                                 <div class="like"><img src="images/l.png"><span>{{item._id | getFabulous}}</span></div>
-                                <div class="cmt-list" ng-if='item._id'>
-                                    <p ng-repeat='com in item._id | getComments'><span>wu世勋-EXO：</span>나는 서명～</p>
-                                    
-                                    <p> <span class="data-name">万虎科技~贾素杰</span> 回复 <span> 王思聪 </span> <span> ： </span>
-                                        澳洲大堡礁，这边刚好是夏季，挺适合避寒的。 </p>
+                                <div class="cmt-list" ng-if='item && item._id'>
+
+                                    <p ng-repeat='com in item.comments'>
+                                        <span ng-if='com.becomment==0'><span ng-click='favorites.reply(com.userId,item)'>{{com.userId
+                                                | commentsName}}：</span>{{com.content}}</span>
+                                        <span ng-if='com.becomment!=0'>
+                                            <span class="data-name">{{com.userId | commentsName}}</span> 回复 <span>
+                                                {{com.becomment | commentsName}} </span> <span> ：
+                                            </span>
+                                            {{com.content}}
+                                        </span>
+                                    </p>
+
                                 </div>
                             </div>
                         </div>

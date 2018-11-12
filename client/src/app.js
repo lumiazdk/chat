@@ -23,6 +23,8 @@ import userIdNameFilter from "../src/favorites/userId-name.filter";
 import userIdPictureFilter from "../src/favorites/userId-picture.filter";
 import getFabulousFilter from "../src/favorites/getFabulous.filter";
 import getCommentsFilter from "../src/favorites/getComments.filter";
+import commentNameFilter from "../src/favorites/commentsName.filter";
+
 
 
 
@@ -67,6 +69,8 @@ new Loader(App)
     .load(userIdPictureFilter)
     .load(getFabulousFilter)
     .load(getCommentsFilter)
+    .load(commentNameFilter)
+
 
 
 

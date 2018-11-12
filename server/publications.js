@@ -28,12 +28,14 @@ Meteor.publish("Dynamic", function () {
                 content: 1,
                 imgList: 1,
                 createdAt: 1,
+                comments: 1,
                 userId: 1
 
             }
         }
     );
 });
+
 Meteor.publish("Comments", function () {
     return Comments.find(
         {},

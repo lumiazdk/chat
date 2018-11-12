@@ -8,10 +8,8 @@ export default class getCommentsFilter extends Filter {
 
         if (dynamicid) {
 
-            let newComments = Comments.find({ dynamicid: dynamicid }).fetch();
+            let newComments = Comments.find({ dynamicid: dynamicid }).fetch().slice();
             console.log(newComments)
-            var i=1
-            console.log(i++)
             return newComments
         } else {
             return []

@@ -8,7 +8,6 @@
       <button class="button button-clear button-positive" ng-click="NewDynamic.hideNewDynamicModal()">取消</button>
     </div>
   </ion-header-bar>
-
   <ion-content class="new-dynamic">
     <div class="content has-header">
       <div class="list">
@@ -16,7 +15,19 @@
           <textarea placeholder="说点什么" ng-model='NewDynamic.content'></textarea>
         </label>
       </div>
-      <input id="uploadImg" type="file" name="files" accept="image/*" file="NewDynamic.files" />
+    
+      <div class="con">
+        <div class="img" ng-repeat='item in NewDynamic.$scope.listImg'>
+          <img ng-src="{{item}}" alt="">
+        </div>
+
+        <div class="img jia" style="background:#9999">
+          <input id="uploadImg" type="file" name="files" accept="image/*" file="NewDynamic.files" />
+
+          <img src="/jia.png" alt="">
+        </div>
+      </div>
+
     </div>
   </ion-content>
 </ion-modal-view>

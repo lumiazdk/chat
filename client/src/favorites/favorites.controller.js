@@ -54,6 +54,19 @@ export default class favoritesCtrl extends Controller {
                 });
         });
     }
+    showzan(item) {
+        if (item.isShow == true) {
+            for (var i = 0; i < this.dynamicList.length; i++) {
+                this.dynamicList[i].isShow = false
+            }
+            item.isShow = false
+        } else {
+            for (var i = 0; i < this.dynamicList.length; i++) {
+                this.dynamicList[i].isShow = false
+            }
+            item.isShow = true
+        }
+    }
     fabulous(item) {
         if (Fabulous.findOne({ dynamicid: item._id })) {
 
@@ -110,14 +123,26 @@ export default class favoritesCtrl extends Controller {
 
     }
     reply(id, item) {
+
         this.replyStatus = true
         this.item = item
         this.toCommentid = id
-        console.log(33)
+        var that = this
+        layer.prompt({ title: '输入评论', formType: 0 }, function (pass, index) {
+            that.commentText = pass;
+            that.sendComment()
+            layer.close(index);
+        });
     }
     commentTap(item) {
+        var that = this
         this.replyStatus = false
         this.item = item
+        layer.prompt({ title: '输入评论', formType: 0 }, function (pass, index) {
+            that.commentText = pass;
+            that.sendComment()
+            layer.close(index);
+        });
     }
     userLists = [];
     search() {
@@ -176,4 +201,4 @@ export default class favoritesCtrl extends Controller {
 }
 
 favoritesCtrl.$name = "favoritesCtrl";
-favoritesCtrl.$inject = ["$state", "$ionicLoading", "$ionicPopup", "$log", "NewDynamic"];
+favoritesCtrl.$inject = ["$state", "$ionicLoading", "$ionicPopup", "$log", "NewDynamic", '$ionicPopup', '$scope'];

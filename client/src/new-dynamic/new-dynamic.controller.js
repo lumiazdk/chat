@@ -3,7 +3,7 @@ import { Controller } from 'angular-ecmascript/module-helpers';
 import { Dynamic } from '../../../lib/collections';
 
 export default class NewDynamicCtrl extends Controller {
-  constructor() {
+  constructor($scope) {
     super(...arguments);
     this.subscribe('users');
     this.helpers({
@@ -11,31 +11,38 @@ export default class NewDynamicCtrl extends Controller {
         return Meteor.users.find({ _id: { $ne: this.currentUserId } });
       }
     });
-    this.listImg = []
-    this.content='33'
+    this.content = ''
+    this.$scope.listImg = []
     var that = this
-    setTimeout(function () {
+    $(document).ready(function () {
       that.uploadImg({
         maxNum: 680, //压缩后照片 最大宽度/高度
         rate: 0.8, //清晰度比率 0-1 越小照片大小越小但越不清晰 默认0.8
         callback: function (baseUrl) { // 回调函数返回压缩成功后的
           // $("#imgShow").attr("src", baseUrl);
-          that.listImg.push(baseUrl)
-          console.log(that.listImg)
+          that.$scope.listImg.push(baseUrl)
+          that.$scope.$apply();
+          console.log(that.$scope.listImg)
         }
       })
-    }, 0)
+    });
   }
   send() {
+    var that = this
     var dynamic = {
-      userId:Meteor.userId(),
+      userId: Meteor.userId(),
       content: this.content,
-      imgList: this.listImg,
-      comments:[],
+      imgList: this.$scope.listImg,
+      comments: [],
       createdAt: new Date()
 
     }
-    Dynamic.insert(dynamic);
+    Dynamic.insert(dynamic, function (err) {
+      if (!err) {
+        that.NewDynamic.hideModal();
+
+      }
+    });
   }
   uploadImg(parametric) {
     var thisObj = {
@@ -46,14 +53,12 @@ export default class NewDynamicCtrl extends Controller {
       }
     }
     $("#uploadImg").on("change", function (e) {
-      console.log(33)
 
       if ($(this).val() == "") {
         return;
       }
       var _this = this;
       var file = this.files[0];
-      console.log(file)
       var reader0 = new FileReader();
       var compressBas;
       reader0.readAsDataURL(file); //调用自带方法进行转换
@@ -105,7 +110,6 @@ export default class NewDynamicCtrl extends Controller {
   hideNewDynamicModal() {
     this.NewDynamic.hideModal();
 
-    console.log(this.users)
   }
 }
 

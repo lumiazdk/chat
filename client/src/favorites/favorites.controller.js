@@ -10,7 +10,7 @@ export default class favoritesCtrl extends Controller {
         this.subscribe("Fabulous");
         this.subscribe("users");
         this.subscribe("Friends");
-
+        var that = this
         this.helpers({
             dynamicList() {
                 var friends = Friends.find({ 'userId': Meteor.userId() }, { sort: { createdAt: -1 } }).fetch()
@@ -19,13 +19,24 @@ export default class favoritesCtrl extends Controller {
                     arr.push(item.friendId)
                 })
                 console.log(arr)
-                let data = Dynamic.find({ "userId": { $in: arr } }, { sort: { createdAt: -1 } }).fetch()
+                let data = Dynamic.find({ "userId": { $in: arr } }, { sort: { createdAt: -1 }, limit: 3 }).fetch()
                 console.log(data)
                 return data
             }
 
         });
+        this.$scope.$on('$ionicView.loaded', function (event, data) {
+            console.log(22)
 
+        });
+        this.$scope.loadMore = function () {
+            console.log(55)
+            setTimeout(() => {
+
+                that.$scope.$broadcast('scroll.infiniteScrollComplete');
+
+            }, 1000);
+        };
         $(document).ready(function () {
             /*调起大图 S*/
             var mySwiper = new Swiper('.swiper-container2', {
@@ -63,10 +74,7 @@ export default class favoritesCtrl extends Controller {
                 });
         });
     }
-    loadMore() {
-        console.log(33)
-        // this.$scope.$broadcast('scroll.infiniteScrollComplete')
-    }
+
     showzan(item) {
         if (item.isShow == true) {
             for (var i = 0; i < this.dynamicList.length; i++) {

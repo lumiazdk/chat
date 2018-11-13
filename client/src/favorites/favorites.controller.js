@@ -13,7 +13,7 @@ export default class favoritesCtrl extends Controller {
         var that = this
         this.helpers({
             dynamicList() {
-                var friends = Friends.find({ 'userId': Meteor.userId() }, { sort: { createdAt: -1 } }).fetch()
+                var friends = Friends.find({ 'userId': Meteor.userId() }).fetch()
                 var arr = [Meteor.userId()]
                 friends.forEach(item => {
                     arr.push(item.friendId)
@@ -25,18 +25,25 @@ export default class favoritesCtrl extends Controller {
             }
 
         });
-        this.$scope.$on('$ionicView.loaded', function (event, data) {
-            console.log(22)
-
-        });
         this.$scope.loadMore = function () {
             console.log(55)
+            var friends = Friends.find({ 'userId': Meteor.userId() }).fetch()
+            var arr = [Meteor.userId()]
+            friends.forEach(item => {
+                arr.push(item.friendId)
+            })
+            console.log(arr)
+            let data = Dynamic.find({ "userId": { $in: arr } }, { sort: { createdAt: -1 }, limit: 6 }).fetch()
+            that.dynamicList = data
             setTimeout(() => {
 
                 that.$scope.$broadcast('scroll.infiniteScrollComplete');
 
             }, 1000);
         };
+        this.$scope.$on('$stateChangeSuccess', function () {
+            that.$scope.loadMore();
+        });
         $(document).ready(function () {
             /*调起大图 S*/
             var mySwiper = new Swiper('.swiper-container2', {
@@ -222,4 +229,4 @@ export default class favoritesCtrl extends Controller {
 }
 
 favoritesCtrl.$name = "favoritesCtrl";
-favoritesCtrl.$inject = ["$state", "$ionicLoading", "$ionicPopup", "$log", "NewDynamic", '$ionicPopup', '$scope',];
+favoritesCtrl.$inject = ["$state", "$ionicLoading", "$ionicPopup", "$log", "NewDynamic", '$ionicPopup', '$scope'];

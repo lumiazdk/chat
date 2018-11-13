@@ -4,7 +4,7 @@ import { Controller } from "angular-ecmascript/module-helpers";
 import { Dynamic, Fabulous, Friends } from "../../../lib/collections";
 
 export default class favoritesCtrl extends Controller {
-    constructor() {
+    constructor($scope) {
         super(...arguments);
         this.subscribe("Dynamic");
         this.subscribe("Fabulous");
@@ -22,10 +22,10 @@ export default class favoritesCtrl extends Controller {
                 let data = Dynamic.find({ "userId": { $in: arr } }, { sort: { createdAt: -1 } }).fetch()
                 console.log(data)
                 return data
-
-
             }
+
         });
+
         $(document).ready(function () {
             /*调起大图 S*/
             var mySwiper = new Swiper('.swiper-container2', {
@@ -62,6 +62,10 @@ export default class favoritesCtrl extends Controller {
 
                 });
         });
+    }
+    loadMore() {
+        console.log(33)
+        // this.$scope.$broadcast('scroll.infiniteScrollComplete')
     }
     showzan(item) {
         if (item.isShow == true) {
@@ -210,4 +214,4 @@ export default class favoritesCtrl extends Controller {
 }
 
 favoritesCtrl.$name = "favoritesCtrl";
-favoritesCtrl.$inject = ["$state", "$ionicLoading", "$ionicPopup", "$log", "NewDynamic", '$ionicPopup', '$scope'];
+favoritesCtrl.$inject = ["$state", "$ionicLoading", "$ionicPopup", "$log", "NewDynamic", '$ionicPopup', '$scope',];

@@ -3,53 +3,57 @@
         <button ng-click="favorites.showNewDynamicModal()" class="button  button-positive button-icon ion-ios-compose-outline"></button>
     </ion-nav-buttons>
     <ion-content hide-nav-bar={{true}}>
-        <div id="main">
-            <div id="list">
-                <ul>
-                    <li ng-repeat='item in favorites.dynamicList'>
-                        <div class="po-avt-wrap"> <img class="po-avt data-avt" ng-src="{{item | userIdPicture}}"> </div>
-                        <div class="po-cmt">
-                            <div class="po-hd">
-                                <p class="po-name"><span class="data-name">{{item | userIdName}}</span></p>
-                                <div class="post">
-                                    <p>{{item.content}}</p>
-                                    <p>
-                                        <img class="list-img" ng-src="{{p}}" style="height: 80px;" ng-repeat='p in item.imgList'>
-                                    </p>
-                                </div>
-                                <p class="time">{{ item.createdAt | calendar }}</p>
-                                <div class="tc1"> <img class="c-icon" src="images/c.png" ng-click='favorites.showzan(item)'>
-                                    <div class="tc2" ng-if='item.isShow==true'><span class="zan" ng-click='favorites.fabulous(item)'><span><i
-                                                    class="icon ion-ios-heart-outline">&nbsp;</i>赞</span></span>　<span
-                                            class="pinglun" ng-click='favorites.commentTap(item)'><span><i class="icon ion-ios-chatbubble-outline"></i>&nbsp;评论</span></span></div>
-                                </div>
+        <ion-scroll>
+            <div id="main">
+                <div id="list">
+                    <ul>
+                        <li ng-repeat='item in favorites.dynamicList'>
+                            <div class="po-avt-wrap"> <img class="po-avt data-avt" ng-src="{{item | userIdPicture}}">
                             </div>
-                            <div class="r"></div>
-                            <div class="cmt-wrap">
-                                <div class="like"><img src="images/l.png"><span>{{item._id | getFabulous}}</span></div>
-                                <div class="cmt-list" ng-if='item && item._id'>
+                            <div class="po-cmt">
+                                <div class="po-hd">
+                                    <p class="po-name"><span class="data-name">{{item | userIdName}}</span></p>
+                                    <div class="post">
+                                        <p>{{item.content}}</p>
+                                        <p>
+                                            <img class="list-img" ng-src="{{p}}" style="height: 80px;" ng-repeat='p in item.imgList'>
+                                        </p>
+                                    </div>
+                                    <p class="time">{{ item.createdAt | calendar }}</p>
+                                    <div class="tc1"> <img class="c-icon" src="images/c.png" ng-click='favorites.showzan(item)'>
+                                        <div class="tc2" ng-if='item.isShow==true'><span class="zan" ng-click='favorites.fabulous(item)'><span><i
+                                                        class="icon ion-ios-heart-outline">&nbsp;</i>赞</span></span>　<span
+                                                class="pinglun" ng-click='favorites.commentTap(item)'><span><i class="icon ion-ios-chatbubble-outline"></i>&nbsp;评论</span></span></div>
+                                    </div>
+                                </div>
+                                <div class="r"></div>
+                                <div class="cmt-wrap">
+                                    <div class="like"><img src="images/l.png"><span>{{item._id | getFabulous}}</span></div>
+                                    <div class="cmt-list" ng-if='item && item._id'>
 
-                                    <p ng-repeat='com in item.comments'>
-                                        <span ng-if='com.becomment==0'><span>{{com.userId
-                                                | commentsName}}：</span> <span ng-click='favorites.reply(com.userId,item)'>{{com.content}}</span></span>
-                                        <span ng-if='com.becomment!=0'>
-                                            <span class="data-name">{{com.userId | commentsName}}</span> 回复 <span>
-                                                {{com.becomment | commentsName}} </span> <span> ：
+                                        <p ng-repeat='com in item.comments'>
+                                            <span ng-if='com.becomment==0'><span>{{com.userId
+                                                    | commentsName}}：</span> <span ng-click='favorites.reply(com.userId,item)'>{{com.content}}</span></span>
+                                            <span ng-if='com.becomment!=0'>
+                                                <span class="data-name">{{com.userId | commentsName}}</span> 回复 <span>
+                                                    {{com.becomment | commentsName}} </span> <span> ：
+                                                </span>
+                                                <span ng-click='favorites.reply(com.userId,item)'>{{com.content}}</span>
+
                                             </span>
-                                            <span ng-click='favorites.reply(com.userId,item)'>{{com.content}}</span>
+                                        </p>
 
-                                        </span>
-                                    </p>
-
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
 
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </div>
-
+        </ion-scroll>
+        <ion-infinite-scroll on-infinite="favorites.loadMore()" distance="1%">
+        </ion-infinite-scroll>
     </ion-content>
     <div class="big_img">
         <div class="swiper-container2">

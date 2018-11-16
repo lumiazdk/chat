@@ -11,6 +11,8 @@ export default class favoritesCtrl extends Controller {
         this.subscribe("users");
         this.subscribe("Friends");
         var that = this
+        this.page = 0
+        this.length = 0
         this.helpers({
             dynamicList() {
                 var friends = Friends.find({ 'userId': Meteor.userId() }).fetch()
@@ -20,6 +22,7 @@ export default class favoritesCtrl extends Controller {
                 })
                 console.log(arr)
                 let data = Dynamic.find({ "userId": { $in: arr } }, { sort: { createdAt: -1 }, limit: 3 }).fetch()
+                that.length = data.length;
                 console.log(data)
                 return data
             }
@@ -27,22 +30,34 @@ export default class favoritesCtrl extends Controller {
         });
         this.$scope.loadMore = function () {
             console.log(55)
+            that.page++;
+
             var friends = Friends.find({ 'userId': Meteor.userId() }).fetch()
             var arr = [Meteor.userId()]
             friends.forEach(item => {
                 arr.push(item.friendId)
             })
             console.log(arr)
-            let data = Dynamic.find({ "userId": { $in: arr } }, { sort: { createdAt: -1 }, limit: 6 }).fetch()
+            let data = Dynamic.find({ "userId": { $in: arr } }, { sort: { createdAt: -1 }, limit: 3 * that.page }).fetch()
+            console.log(that.page)
+            console.log(data)
+
+            if (data.length > that.length) {
+            } else {
+                if (that.page != 1) {
+                    layer.msg('没有更多数据')
+
+                }
+            }
+            that.length = data.length
             that.dynamicList = data
-            setTimeout(() => {
 
-                that.$scope.$broadcast('scroll.infiniteScrollComplete');
 
-            }, 1000);
+            that.$scope.$broadcast('scroll.infiniteScrollComplete');
+
         };
         this.$scope.$on('$stateChangeSuccess', function () {
-            that.$scope.loadMore();
+            // that.$scope.loadMore();
         });
         $(document).ready(function () {
             /*调起大图 S*/

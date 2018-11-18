@@ -73,12 +73,6 @@ new Loader(App)
     .load(getCommentsFilter)
     .load(commentNameFilter)
     .load(autographFilter)
-
-
-
-
-
-
     .load(ConfirmationCtrl)
     .load(ProfileCtrl)
     .load(SettingsCtrl)
@@ -95,10 +89,37 @@ new Loader(App)
 // Startup
 if (Meteor.isCordova) {
     Angular.element(document).on("deviceready", onReady);
+    console.log('---------------------------------')
+    var date = new Date();
+ 
+notification.local.schedule({
+    id: 1,
+    title: "Message Title",
+    message: "Message Text",
+    firstAt: date, // firstAt and at properties must be an IETF-compliant RFC 2822 timestamp
+    every: "week", // this also could be minutes i.e. 25 (int)
+    sound: "hh",
+    icon: "hh",
+    data: { meetingId:"123#fg8" }
+});
+ 
+notification.local.on("click", function (notification) {
+    joinMeeting(notification.data.meetingId);
+});
 } else {
     Angular.element(document).ready(onReady);
 }
 
 function onReady() {
     Angular.bootstrap(document, [App]);
+    if (Meteor.isCordova) {
+        console.log("Printed only in mobile Cordova apps");
+        cordova.plugins.notification.local.schedule({
+            id: 1,
+            title: '应用提醒',
+            text: '应用有新消息，快来查看吧',
+            at: new Date(new Date().getTime() + 5 * 60 * 1000)
+            });
+       
+      }
 }

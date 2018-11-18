@@ -20,7 +20,9 @@ export default class ChatCtrl extends Controller {
                 return Chats.findOne(this.chatId);
             }
         });
+        
         this.autoScroll();
+        
     }
     sendPicture() {
         MeteorCameraUI.getPicture({}, (err, data) => {
@@ -98,6 +100,7 @@ export default class ChatCtrl extends Controller {
           okType: 'button-positive button-clear'
         });
       }
+      
 }
 
 ChatCtrl.$name = 'ChatCtrl';

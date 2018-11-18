@@ -17,8 +17,8 @@ export default class LoginCtrl extends Controller {
     }
     login() {
         let that = this;
-        if (_.isEmpty(this.email)) {
-            layer.msg("请输入电子邮件");
+        if (!/^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g.test(this.email)) {
+            layer.msg("请输入正确电子邮件");
             return;
         }
         if (_.isEmpty(this.password)) {
@@ -47,7 +47,7 @@ export default class LoginCtrl extends Controller {
             } else {
                 layer.msg("登陆成功");
 
-                that.$state.go("tab.chats");
+                that.$state.go("tab.favorites");
             }
 
         });
